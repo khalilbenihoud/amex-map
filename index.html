@@ -31,8 +31,13 @@
                     <i class='bx bxs-map-alt'></i>
                     <div class="logo">Amex Dining Collection</div>
                 </div>
-                <h1>Restaurants</h1>
-                <p class="subtitle">Votre sélection Platinum & Gold</p>
+                <h1 class="title">Restaurants Platinum</h1>
+                <div class="header-actions">
+                    <p class="subtitle">Sélection Gastronomique France</p>
+                    <button id="info-btn" class="btn-text">
+                        <i class='bx bx-info-circle'></i> En savoir plus
+                    </button>
+                </div>
             </header>
 
             <div id="search-container">
@@ -65,9 +70,45 @@
             </div>
         </aside>
 
-        <main class="map-container">
-            <div id="map"></div>
-        </main>
+        Ce site n'est pas affilié à American Express. Side project indépendant.
+    </div>
+    </aside>
+
+    <main class="map-container">
+        <div id="map"></div>
+    </main>
+    </div>
+
+    <!-- Welcome Modal -->
+    <div id="welcome-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class='bx bxs-star'></i> Avantages Platinum</h2>
+                <button id="close-modal" class="close-btn"><i class='bx bx-x'></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class='bx bxs-credit-card'></i></div>
+                    <div class="benefit-text">
+                        <h3>200€ de Remboursement</h3>
+                        <p>Bénéficiez de 200€ par an de crédit restaurant en France (100€ par semestre).</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class='bx bxs-store'></i></div>
+                    <div class="benefit-text">
+                        <h3>Sélection exclusive</h3>
+                        <p>Utilisez votre crédit dans plus de 1 400 restaurants partenaires sélectionnés.</p>
+                    </div>
+                </div>
+                <div class="benefit-note">
+                    <small>*Inscrivez-vous à l'offre dans votre espace client avant de réserver.</small>
+                </div>
+                <button id="start-btn" class="btn-primary full-width">
+                    Explorer la Carte <i class='bx bx-map-alt'></i>
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- Leaflet JS -->

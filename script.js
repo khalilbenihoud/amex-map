@@ -285,3 +285,37 @@ window.addEventListener('load', () => {
 // Initial Render
 renderList(restaurants);
 initMarkers();
+
+// Modal Logic
+const modal = document.getElementById('welcome-modal');
+const closeModalBtn = document.getElementById('close-modal');
+const startBtn = document.getElementById('start-btn');
+const infoBtn = document.getElementById('info-btn');
+
+function openModal() {
+    modal.classList.add('active');
+}
+
+function closeModal() {
+    modal.classList.remove('active');
+}
+
+if (modal) {
+    // Open on button click
+    if (infoBtn) {
+        infoBtn.addEventListener('click', openModal);
+    }
+
+    // Auto-open removed as per request
+    // window.addEventListener('load', openModal);
+
+    closeModalBtn.addEventListener('click', closeModal);
+    startBtn.addEventListener('click', closeModal);
+
+    // Close on click outside
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+}
