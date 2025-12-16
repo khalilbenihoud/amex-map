@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amex Dining - Restaurants Partenaires</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <header class="header">
+                <div class="brand">
+                    <i class='bx bxs-map-alt'></i>
+                    <div class="logo">Amex Dining Collection</div>
+                </div>
+                <h1>Restaurants</h1>
+                <p class="subtitle">Votre sélection Platinum & Gold</p>
+            </header>
+
+            <div id="search-container">
+                <div class="search-wrapper">
+                    <i class='bx bx-search search-icon'></i>
+                    <input type="text" id="restaurant-search" placeholder="Rechercher par nom, ville...">
+                    <i class='bx bx-x clear-search' id="clear-search"></i>
+                </div>
+            </div>
+
+            <div id="restaurant-list" class="restaurant-list">
+                <!-- Restaurant items will be populated by JS -->
+            </div>
+
+            <!-- Referral Banner -->
+            <div class="referral-banner">
+                <div class="referral-content">
+                    <h4><i class='bx bxs-gift'></i> Offre de Parrainage</h4>
+                    <p>Profitez d'un bonus de bienvenue exceptionnel American Express.</p>
+                </div>
+                <!-- REMPLACEZ LE # PAR VOTRE LIEN DE PARRAINAGE -->
+                <a href="https://www.americanexpress.com/fr-fr/referral/platinum?ref=kHALIB3yBY" target="_blank"
+                    class="btn-referral">
+                    Je profite de l'offre <i class='bx bx-right-arrow-alt'></i>
+                </a>
+            </div>
+
+            <div class="disclaimer">
+                Ce site n'est pas affilié à American Express. Side project indépendant.
+            </div>
+        </aside>
+
+        <main class="map-container">
+            <div id="map"></div>
+        </main>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+
+    <!-- Mobile Toggle Button -->
+    <div class="mobile-toggle-container">
+        <button id="mobile-toggle" class="btn-toggle">
+            <i class='bx bx-map-alt'></i> Carte
+        </button>
+    </div>
+
+    <!-- Local JS -->
+    <script src="script.js" defer></script>
+</body>
+
+</html>
