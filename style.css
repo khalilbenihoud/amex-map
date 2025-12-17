@@ -121,7 +121,7 @@ h1 {
 
 /* Search Area */
 #search-container {
-    padding: 1.25rem 2rem;
+    padding: 1.25rem 1.5rem;
     position: relative;
     background-color: #fff;
     flex-shrink: 0;
