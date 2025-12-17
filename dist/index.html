@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amex Dining - Restaurants Partenaires France</title>
+    <meta name="description"
+        content="Découvrez la liste des restaurants partenaires American Express Platinum & Gold en France. Profitez de vos avantages Dining et crédits restaurant jusqu'à 200€/an.">
+    <meta name="keywords"
+        content="Amex Dining, Restaurants Platinum, American Express France, Crédit Dining, Gastronomie, Carte Platinum">
+    <meta name="author" content="Amex Dining Collection">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://amex-map.netlify.app/">
+    <meta property="og:title" content="Amex Dining - Restaurants Partenaires">
+    <meta property="og:description"
+        content="Carte interactive des plus de 1400 restaurants partenaires American Express en France.">
+    <meta property="og:image"
+        content="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://amex-map.netlify.app/">
+    <meta property="twitter:title" content="Amex Dining - Restaurants Partenaires">
+    <meta property="twitter:description"
+        content="Carte interactive des plus de 1400 restaurants partenaires American Express en France.">
+    <meta property="twitter:image"
+        content="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Amex Dining Collection",
+      "url": "https://amex-map.netlify.app/",
+      "description": "Carte interactive des restaurants partenaires American Express Platinum & Gold en France.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://amex-map.netlify.app/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <header class="header">
+                <div class="brand">
+                    <img src="logo.svg" alt="Amex Dining Collection" class="logo-img" />
+                    <!-- <div class="logo">Amex <span>Dining</span> Collection</div> -->
+                </div>
+                <h1 class="title">Restaurants Platinum</h1>
+                <div class="header-actions">
+                    <p class="subtitle">Sélection Gastronomique France</p>
+                    <button id="info-btn" class="btn-text">
+                        <i class='bx bx-info-circle'></i> En savoir plus
+                    </button>
+                </div>
+            </header>
+
+            <div id="search-container">
+                <div class="search-wrapper">
+                    <i class='bx bx-search search-icon'></i>
+                    <input type="text" id="restaurant-search" placeholder="Rechercher par nom, ville...">
+                    <i class='bx bx-x clear-search' id="clear-search"></i>
+                </div>
+            </div>
+
+            <div id="restaurant-list" class="restaurant-list">
+                <!-- Restaurant items will be populated by JS -->
+            </div>
+
+            <!-- Referral Banner -->
+            <div class="referral-banner">
+                <div class="referral-content">
+                    <h4><i class='bx bxs-gift'></i> Offre de Parrainage</h4>
+                    <p>Profitez d'un bonus de bienvenue exceptionnel American Express.</p>
+                </div>
+                <!-- REMPLACEZ LE # PAR VOTRE LIEN DE PARRAINAGE -->
+                <a href="https://www.americanexpress.com/fr-fr/referral/platinum?ref=kHALIB3yBY" target="_blank"
+                    class="btn-referral">
+                    Je profite de l'offre <i class='bx bx-right-arrow-alt'></i>
+                </a>
+            </div>
+
+            <div class="disclaimer">
+                Ce site n'est pas affilié à American Express. <a
+                    href="https://www.americanexpress.com/fr-fr/benefits/diningbenefit/" target="_blank"
+                    style="color: inherit; text-decoration: underline;">Voir la liste officielle</a>.
+            </div>
+        </aside>
+
+        <main class="map-container">
+            <div id="map"></div>
+        </main>
+    </div>
+
+    <!-- Welcome Modal -->
+    <div id="welcome-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class='bx bxs-star'></i> Avantages Carte AMEX Platinum</h2>
+                <button id="close-modal" class="close-btn"><i class='bx bx-x'></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class='bx bxs-credit-card'></i></div>
+                    <div class="benefit-text">
+                        <h3>200€ de Remboursement</h3>
+                        <p>Bénéficiez de 200€ par an de crédit restaurant en France (100€ par semestre).</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class='bx bxs-store'></i></div>
+                    <div class="benefit-text">
+                        <h3>Sélection exclusive</h3>
+                        <p>Utilisez votre crédit dans plus de 1 400 restaurants partenaires sélectionnés.</p>
+                    </div>
+                </div>
+                <div class="benefit-note">
+                    <small>Profitez d'un bonus de bienvenue exceptionnel American Express avec mon lien de
+                        parrainage.</small>
+                </div>
+                <a href="https://www.americanexpress.com/fr-fr/referral/platinum?ref=kHALIB3yBY" target="_blank"
+                    class="btn-primary full-width"
+                    style="margin-bottom: 10px; text-decoration: none; text-align: center;">
+                    Je demande ma carte <i class='bx bx-credit-card'></i>
+                </a>
+                <button id="start-btn" class="btn-secondary full-width">
+                    Explorer la Carte <i class='bx bx-map-alt'></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+
+    <!-- Mobile Toggle Button -->
+    <div class="mobile-toggle-container">
+        <button id="mobile-toggle" class="btn-toggle">
+            <i class='bx bx-map-alt'></i> Carte
+        </button>
+    </div>
+
+    <!-- Local JS -->
+    <script src="script.js" defer></script>
+</body>
+
+</html>

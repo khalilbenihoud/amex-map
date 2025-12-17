@@ -1,0 +1,318 @@
+[
+  {
+    "name": "CAFE LAPEROUSE CONCORDE",
+    "address": "2 place de la concorde"
+  },
+  {
+    "name": "CHANTOISEAU",
+    "address": "6 rue Bailleul"
+  },
+  {
+    "name": "CHOCHO",
+    "address": "9 rue Vauvilliers"
+  },
+  {
+    "name": "CLOVER GRILL",
+    "address": "228 rue de Rivoli"
+  },
+  {
+    "name": "CORETTA",
+    "address": "16 avenue de l’Opéra"
+  },
+  {
+    "name": "DANTE",
+    "address": "110 galerie de Valois"
+  },
+  {
+    "name": "CAFE COMPAGNON",
+    "address": "22-26 rue Léopold Bellan"
+  },
+  {
+    "name": "DAROCO BOURSE",
+    "address": "6 rue Vivienne"
+  },
+  {
+    "name": "DROUANT",
+    "address": "6 place Gaillon"
+  },
+  {
+    "name": "JOIA",
+    "address": "39 rue des Jeûneurs"
+  },
+  {
+    "name": "ANNE (LE PAVILLON DE LA REINE)*",
+    "address": "28 place des Vosges"
+  },
+  {
+    "name": "ELMER",
+    "address": "30 rue Notre Dame de Nazareth"
+  },
+  {
+    "name": "BENOIT*",
+    "address": "20 rue Saint-Martin"
+  },
+  {
+    "name": "GRANDE BRASSERIE BASTILLE",
+    "address": "6 rue de la Bastille"
+  },
+  {
+    "name": "BAIETA*",
+    "address": "5 rue de Pontoise"
+  },
+  {
+    "name": "L’ATELIER MAITRE ALBERT PAR GUY SAVOY",
+    "address": "1 rue Maître Albert"
+  },
+  {
+    "name": "SOLSTICE*",
+    "address": "45 rue Claude Bernard"
+  },
+  {
+    "name": "ALLARD",
+    "address": "41 rue Saint André des Arts"
+  },
+  {
+    "name": "AUX PRES",
+    "address": "27 rue du Dragon"
+  },
+  {
+    "name": "BRASSERIE LIPP",
+    "address": "151 boulevard Saint-Germain"
+  },
+  {
+    "name": "BRASSERIE LUTETIA (HOTEL LUTETIA)",
+    "address": "43 boulevard Raspail"
+  },
+  {
+    "name": "DRAGON",
+    "address": "29 rue du Dragon"
+  },
+  {
+    "name": "GUY SAVOY (LA MONNAIE DE PARIS)**",
+    "address": "11 quai de Conti"
+  },
+  {
+    "name": "LE BAR DES PRES",
+    "address": "25 rue du Dragon"
+  },
+  {
+    "name": "MARSAN PAR HELENE DARROZE**",
+    "address": "4 rue d’Assas"
+  },
+  {
+    "name": "DIVELLEC*",
+    "address": "18 rue Fabert"
+  },
+  {
+    "name": "LES OMBRES (MUSEE DU QUAI BRANLY)",
+    "address": "27 quai Branly"
+  },
+  {
+    "name": "LES PARISIENS",
+    "address": "5 rue du Pré-aux-Clercs"
+  },
+  {
+    "name": "114 FAUBOURG (HOTEL LE BRISTOL)*",
+    "address": "114 rue du Faubourg St Honoré"
+  },
+  {
+    "name": "19.20 BY NORBERT TARAYRE",
+    "address": "33 avenue George V"
+  },
+  {
+    "name": "AKIRA BACK (PRINCE DE GALLES)",
+    "address": "33 avenue George V"
+  },
+  {
+    "name": "APICIUS*",
+    "address": "20 rue d’Artois"
+  },
+  {
+    "name": "BEEFBAR",
+    "address": "5 rue Marbeuf"
+  },
+  {
+    "name": "DELANO CAFE",
+    "address": "4 rue d’Anjou"
+  },
+  {
+    "name": "EPICURE (HOTEL LE BRISTOL)***",
+    "address": "112 rue du Faubourg St Honoré"
+  },
+  {
+    "name": "FOUQUET’S PARIS",
+    "address": "46 avenue George V"
+  },
+  {
+    "name": "IL CARPACCIO (HOTEL LE ROYAL MONCEAU)*",
+    "address": "37 avenue Hoche"
+  },
+  {
+    "name": "IL RISTORANTE NIKO ROMITO (HOTEL BULGARI)",
+    "address": "30 avenue George V"
+  },
+  {
+    "name": "JEAN IMBERT AU PLAZA ATHENEE*",
+    "address": "25 avenue Montaigne"
+  },
+  {
+    "name": "KALAMATA",
+    "address": "31 rue de la Boétie"
+  },
+  {
+    "name": "LASSERRE*",
+    "address": "17 avenue Franklin Roosevelt"
+  },
+  {
+    "name": "L’ATELIER ETOILE DE JOEL ROBUCHON*",
+    "address": "Publicis Drugstore, 133 avenue des Champs Elysée"
+  },
+  {
+    "name": "LE BAR LONG (HOTEL LE ROYAL MONCEAU)",
+    "address": "37 avenue Hoche"
+  },
+  {
+    "name": "LE CHIBERTA PAR GUY SAVOY (fermeture temporaire)*",
+    "address": "3 rue Arsène Houssaye"
+  },
+  {
+    "name": "LE GRAND RESTAURANT PAR JEAN FRANCOIS PIEGE**",
+    "address": "7 rue d’Aguesseau"
+  },
+  {
+    "name": "LE RELAIS PLAZA",
+    "address": "25 avenue Montaigne"
+  },
+  {
+    "name": "LE RESTAURANT DE LA FANTAISIE (HOTEL LA FANTAISIE)",
+    "address": "24 rue Cadet"
+  },
+  {
+    "name": "PETRELLE",
+    "address": "34 rue Pétrelle"
+  },
+  {
+    "name": "YAKUZA (MAISON ALBAR LE VENDOME)",
+    "address": "7 rue du Helder"
+  },
+  {
+    "name": "CHOCHO",
+    "address": "54 rue de Paradis"
+  },
+  {
+    "name": "DANTE",
+    "address": "14 rue de Paradis"
+  },
+  {
+    "name": "SEPTIME*",
+    "address": "80 rue de Charonne"
+  },
+  {
+    "name": "PASSERINI",
+    "address": "65 rue Traversière"
+  },
+  {
+    "name": "NOSSO",
+    "address": "22 promenade Claude Lévi-Strauss"
+  },
+  {
+    "name": "MOSUKE*",
+    "address": "11 rue Raymond Losserand"
+  },
+  {
+    "name": "LA PLAGE PARISIENNE",
+    "address": "200 port Javel Haut"
+  },
+  {
+    "name": "BELLEFEUILLE (HOTEL SAINT JAMES PARIS)*",
+    "address": "5 place du Chancelier Adenauer"
+  },
+  {
+    "name": "BRACH",
+    "address": "1-7 rue Jean Richepin"
+  },
+  {
+    "name": "DUCASSE SUR SEINE",
+    "address": "Croisière au départ du 19 Port Debilly"
+  },
+  {
+    "name": "LA BAUHINIA (SHANGRI LA PARIS)",
+    "address": "10 avenue d’Iéna"
+  },
+  {
+    "name": "LA GRANDE CASCADE*",
+    "address": "Allée de Longchamp, Bois de Boulogne"
+  },
+  {
+    "name": "LILI (HOTEL PENINSULA)",
+    "address": "19 avenue Kleber"
+  },
+  {
+    "name": "CORETTA",
+    "address": "151 bis rue Cardinet"
+  },
+  {
+    "name": "OXTE*",
+    "address": "5 rue Troyon"
+  },
+  {
+    "name": "RESTAURANT MALLORY GABSI*",
+    "address": "28 rue des Acacias"
+  },
+  {
+    "name": "CHANTOISEAU",
+    "address": "63 rue Lepic"
+  },
+  {
+    "name": "LE GRAND CONTROLE*",
+    "address": "12 r l’Indépendance américaine 78000 Versailles"
+  },
+  {
+    "name": "ORE (CHATEAU DE VERSAILLES)",
+    "address": "Château de Versailles 78000 Versailles"
+  },
+  {
+    "name": "LE REFUGE",
+    "address": "Hameau du Leutaz 74120 Megève"
+  },
+  {
+    "name": "BEEFBAR MERIBEL (LE COUCOU)",
+    "address": "464 route du Belvédère 73550 Meribel"
+  },
+  {
+    "name": "MAMO MICHELANGELO",
+    "address": "4 rue des Cordiers 06600 Antibes"
+  },
+  {
+    "name": "L’HOSTELLERIE DE L’ABBAYE DE LA CELLE",
+    "address": "10 place du Général de Gaulle 83170 La Celle"
+  },
+  {
+    "name": "AM PAR ALEXANDRE MAZZIA***",
+    "address": "9 rue François Rocca 13008 Marseille"
+  },
+  {
+    "name": "BLUE BAY**",
+    "address": "40 avenue Princesse-Grace 98000 Monaco"
+  },
+  {
+    "name": "LOUIS XV (HOTEL DE PARIS MONTE-CARLO)***",
+    "address": "Place du Casino 98000 Monaco"
+  },
+  {
+    "name": "BASTIDE DE MOUSTIERS*",
+    "address": "Chemin de Quinson 04360 Moustiers-Sainte-Marie"
+  },
+  {
+    "name": "BAGATELLE CHEZ STEFANO FOREVER",
+    "address": "Chemin de la Matarane 83350 Ramatuelle"
+  },
+  {
+    "name": "BEEFBAR SAINT TROPEZ (HOTEL LOU PINET)",
+    "address": "70 chemin du Pinet 83990 Saint-Tropez"
+  },
+  {
+    "name": "RIVEA",
+    "address": "317 av Eugène Donadeï 06700 St Laurent du Var"
+  }
+]

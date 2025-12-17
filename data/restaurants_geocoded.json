@@ -1,0 +1,398 @@
+[
+  {
+    "name": "CAFE LAPEROUSE CONCORDE",
+    "address": "2 place de la concorde",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "CHANTOISEAU",
+    "address": "6 rue Bailleul",
+    "lat": "48.8609753",
+    "lng": "2.3419779"
+  },
+  {
+    "name": "CLOVER GRILL",
+    "address": "228 rue de Rivoli",
+    "lat": "48.8651359",
+    "lng": "2.3282657"
+  },
+  {
+    "name": "CORETTA",
+    "address": "16 avenue de l’Opéra",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "DANTE",
+    "address": "110 galerie de Valois",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "CAFE COMPAGNON",
+    "address": "22-26 rue Léopold Bellan",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "DROUANT",
+    "address": "6 place Gaillon",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "JOIA",
+    "address": "39 rue des Jeûneurs",
+    "lat": "48.8697445",
+    "lng": "2.3435070"
+  },
+  {
+    "name": "ANNE (LE PAVILLON DE LA REINE)*",
+    "address": "28 place des Vosges",
+    "lat": "48.8562363",
+    "lng": "2.3660257"
+  },
+  {
+    "name": "ELMER",
+    "address": "30 rue Notre Dame de Nazareth",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "BENOIT*",
+    "address": "20 rue Saint-Martin",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "GRANDE BRASSERIE BASTILLE",
+    "address": "6 rue de la Bastille",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "BAIETA*",
+    "address": "5 rue de Pontoise",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "L’ATELIER MAITRE ALBERT PAR GUY SAVOY",
+    "address": "1 rue Maître Albert",
+    "lat": "48.8510935",
+    "lng": "2.3502033"
+  },
+  {
+    "name": "SOLSTICE*",
+    "address": "45 rue Claude Bernard",
+    "lat": "48.8402071",
+    "lng": "2.3458479"
+  },
+  {
+    "name": "AUX PRES",
+    "address": "27 rue du Dragon",
+    "lat": "48.8527577",
+    "lng": "2.3304479"
+  },
+  {
+    "name": "BRASSERIE LIPP",
+    "address": "151 boulevard Saint-Germain",
+    "lat": "48.8537528",
+    "lng": "2.3324105"
+  },
+  {
+    "name": "DRAGON",
+    "address": "29 rue du Dragon",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "GUY SAVOY (LA MONNAIE DE PARIS)**",
+    "address": "11 quai de Conti",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "LE BAR DES PRES",
+    "address": "25 rue du Dragon",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "MARSAN PAR HELENE DARROZE**",
+    "address": "4 rue d’Assas",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "DIVELLEC*",
+    "address": "18 rue Fabert",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "LES OMBRES (MUSEE DU QUAI BRANLY)",
+    "address": "27 quai Branly",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "LES PARISIENS",
+    "address": "5 rue du Pré-aux-Clercs",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "AKIRA BACK (PRINCE DE GALLES)",
+    "address": "33 avenue George V",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "DELANO CAFE",
+    "address": "4 rue d’Anjou",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "FOUQUET’S PARIS",
+    "address": "46 avenue George V",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "IL CARPACCIO (HOTEL LE ROYAL MONCEAU)*",
+    "address": "37 avenue Hoche",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "IL RISTORANTE NIKO ROMITO (HOTEL BULGARI)",
+    "address": "30 avenue George V",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "JEAN IMBERT AU PLAZA ATHENEE*",
+    "address": "25 avenue Montaigne",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "KALAMATA",
+    "address": "31 rue de la Boétie",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "LASSERRE*",
+    "address": "17 avenue Franklin Roosevelt",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "L’ATELIER ETOILE DE JOEL ROBUCHON*",
+    "address": "Publicis Drugstore, 133 avenue des Champs Elysée",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "LE BAR LONG (HOTEL LE ROYAL MONCEAU)",
+    "address": "37 avenue Hoche",
+    "lat": "49.2311347",
+    "lng": "4.0626938"
+  },
+  {
+    "name": "LE CHIBERTA PAR GUY SAVOY (fermeture temporaire)*",
+    "address": "3 rue Arsène Houssaye",
+    "lat": "48.8735340",
+    "lng": "2.2978027"
+  },
+  {
+    "name": "LE GRAND RESTAURANT PAR JEAN FRANCOIS PIEGE**",
+    "address": "7 rue d’Aguesseau",
+    "lat": "48.8701168",
+    "lng": "2.3192755"
+  },
+  {
+    "name": "LE RELAIS PLAZA",
+    "address": "25 avenue Montaigne",
+    "lat": "45.8872880",
+    "lng": "6.1071170"
+  },
+  {
+    "name": "LE RESTAURANT DE LA FANTAISIE (HOTEL LA FANTAISIE)",
+    "address": "24 rue Cadet",
+    "lat": "48.8754301",
+    "lng": "2.3434686"
+  },
+  {
+    "name": "PETRELLE",
+    "address": "34 rue Pétrelle",
+    "lat": "48.8808983",
+    "lng": "2.3466699"
+  },
+  {
+    "name": "YAKUZA (MAISON ALBAR LE VENDOME)",
+    "address": "7 rue du Helder",
+    "lat": "48.8717676",
+    "lng": "2.3348355"
+  },
+  {
+    "name": "DANTE",
+    "address": "14 rue de Paradis",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "PASSERINI",
+    "address": "65 rue Traversière",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "NOSSO",
+    "address": "22 promenade Claude Lévi-Strauss",
+    "lat": "48.8317019",
+    "lng": "2.3743879"
+  },
+  {
+    "name": "MOSUKE*",
+    "address": "11 rue Raymond Losserand",
+    "lat": "48.8362707",
+    "lng": "2.3224104"
+  },
+  {
+    "name": "LA PLAGE PARISIENNE",
+    "address": "200 port Javel Haut",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "BELLEFEUILLE (HOTEL SAINT JAMES PARIS)*",
+    "address": "5 place du Chancelier Adenauer",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "BRACH",
+    "address": "1-7 rue Jean Richepin",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "DUCASSE SUR SEINE",
+    "address": "Croisière au départ du 19 Port Debilly",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "LA BAUHINIA (SHANGRI LA PARIS)",
+    "address": "10 avenue d’Iéna",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "LA GRANDE CASCADE*",
+    "address": "Allée de Longchamp, Bois de Boulogne",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "LILI (HOTEL PENINSULA)",
+    "address": "19 avenue Kleber",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "CORETTA",
+    "address": "151 bis rue Cardinet",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "OXTE*",
+    "address": "5 rue Troyon",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "RESTAURANT MALLORY GABSI*",
+    "address": "28 rue des Acacias",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "CHANTOISEAU",
+    "address": "63 rue Lepic",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "LE GRAND CONTROLE*",
+    "address": "12 r l’Indépendance américaine 78000 Versailles",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "ORE (CHATEAU DE VERSAILLES)",
+    "address": "Château de Versailles 78000 Versailles",
+    "lat": "48.8044252",
+    "lng": "2.1202853"
+  },
+  {
+    "name": "LE REFUGE",
+    "address": "Hameau du Leutaz 74120 Megève",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "BEEFBAR MERIBEL (LE COUCOU)",
+    "address": "464 route du Belvédère 73550 Meribel",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "L’HOSTELLERIE DE L’ABBAYE DE LA CELLE",
+    "address": "10 place du Général de Gaulle 83170 La Celle",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "AM PAR ALEXANDRE MAZZIA***",
+    "address": "9 rue François Rocca 13008 Marseille",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "LOUIS XV (HOTEL DE PARIS MONTE-CARLO)***",
+    "address": "Place du Casino 98000 Monaco",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "BASTIDE DE MOUSTIERS*",
+    "address": "Chemin de Quinson 04360 Moustiers-Sainte-Marie",
+    "lat": "43.8409044",
+    "lng": "6.2180278"
+  },
+  {
+    "name": "BAGATELLE CHEZ STEFANO FOREVER",
+    "address": "Chemin de la Matarane 83350 Ramatuelle",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "BEEFBAR SAINT TROPEZ (HOTEL LOU PINET)",
+    "address": "70 chemin du Pinet 83990 Saint-Tropez",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "name": "RIVEA",
+    "address": "317 av Eugène Donadeï 06700 St Laurent du Var",
+    "lat": null,
+    "lng": null
+  }
+]

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://amex-map.netlify.app/sitemap.xml
