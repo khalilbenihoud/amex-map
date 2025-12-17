@@ -739,3 +739,25 @@ h1 {
 .btn-primary.full-width:hover {
     background-color: var(--primary-dark);
 }
+
+.btn-secondary.full-width {
+    width: 100%;
+    background-color: #f1f5f9;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s;
+    font-family: var(--font-main);
+}
+
+.btn-secondary.full-width:hover {
+    background-color: #e2e8f0;
+}
