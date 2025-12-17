@@ -697,8 +697,8 @@ h1 {
 
 .btn-primary.full-width {
     width: 100%;
-    background-color: var(--primary);
-    color: #fff;
+    background-color: #facc15;
+    color: #713f12;
     border: none;
     padding: 1rem;
     border-radius: 12px;
@@ -714,7 +714,8 @@ h1 {
 }
 
 .btn-primary.full-width:hover {
-    background-color: var(--primary-dark)
+    box-shadow: 0 4px 12px rgba(250, 204, 21, .2);
+    background-color: #fde047
 }
 
 .btn-secondary.full-width {

@@ -122,8 +122,8 @@ function renderList(items) {
                     <a href="${directionsUrl}" target="_blank" class="action-link secondary" onclick="event.stopPropagation()" title="Itinéraire">
                         ${ICONS.trip}
                     </a>
-                    <a href="${websiteUrl}" target="_blank" class="action-link primary" onclick="event.stopPropagation()" title="Site Web">
-                        ${ICONS.globe} Site
+                    <a href="${websiteUrl}" target="_blank" class="action-link primary" onclick="event.stopPropagation()" title="Voir le Restaurant">
+                        ${ICONS.globe} Voir le Restaurant
                     </a>
                 </div>
             </div>
