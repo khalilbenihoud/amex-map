@@ -71,7 +71,8 @@ body {
     display: flex;
     align-items: center;
     gap: .5rem;
-    margin-bottom: .5rem
+    margin-bottom: .5rem;
+    cursor: pointer
 }
 
 .logo-img {
@@ -81,17 +82,23 @@ body {
     display: block
 }
 
-h1 {
-    font-size: 1.75rem;
-    font-weight: 600;
-    letter-spacing: -.5px;
-    color: var(--text-main)
+.title {
+    font-size: 1.85rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.25rem;
 }
 
 .subtitle {
-    font-size: .95rem;
+    font-size: 0.9rem;
     color: var(--text-muted);
-    font-weight: 400
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
 }
 
 .header-actions {
