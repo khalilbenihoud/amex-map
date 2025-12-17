@@ -273,12 +273,12 @@ if (toggleBtn) {
 
         if (isMapVisible) {
             container.classList.add('show-map');
-            toggleBtn.innerHTML = `${ICONS.list} Liste`;
+            toggleBtn.innerHTML = `Liste`;
             // Map needs a resize event to render correctly when revealing from hidden/zero-size
             setTimeout(() => { map.invalidateSize(); }, 300);
         } else {
             container.classList.remove('show-map');
-            toggleBtn.innerHTML = `${ICONS.mapAlt} Carte`;
+            toggleBtn.innerHTML = `Carte`;
         }
     });
 }
