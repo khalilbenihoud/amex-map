@@ -91,6 +91,11 @@ const searchInput = document.getElementById('restaurant-search');
 const featureGroup = L.featureGroup();
 
 function renderList(items) {
+    const resultsCount = document.getElementById('results-count');
+    if (resultsCount) {
+        const count = items.length;
+        resultsCount.textContent = `${count} restaurant${count > 1 ? 's' : ''} trouvé${count > 1 ? 's' : ''}`;
+    }
     listContainer.innerHTML = '';
     items.forEach(restaurant => {
         const card = document.createElement('div');

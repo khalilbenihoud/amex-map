@@ -192,6 +192,14 @@ body {
     box-shadow: 0 0 0 4px rgba(37, 99, 235, .1)
 }
 
+.results-count {
+    padding: 0.75rem 1.25rem 0.25rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    background-color: var(--bg-body);
+    font-weight: 500;
+}
+
 .restaurant-list {
     flex: 1;
     overflow-y: auto;
