@@ -127,6 +127,7 @@ const restaurants = [
     { name: "Le Bar Long", address: "37 avenue Hoche, 75008 Paris", lat: 48.8756, lng: 2.3015, type: "Française", stars: null },
     { name: "Le Beef Bar au Coucou", address: "464 route du Belvédère, Les Allues, 73550 Meribel", lat: 45.3941, lng: 6.5658, type: "Steakhouse", stars: null },
     { name: "Ressources", address: "126 rue Fondaudège, 33000 Bordeaux", lat: 44.8488, lng: -0.5802, type: "Française", stars: "1 Star", rating: 4.7 },
+    { name: "Regain", address: "3 rue d'Algérie, 69001 Lyon", lat: 45.7667, lng: 4.8329, type: "Française", stars: null, rating: 4.8 },
 
 
 ];
