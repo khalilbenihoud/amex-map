@@ -172,11 +172,10 @@ function renderList(items) {
             ? `<div class="stars-badge">${ICONS.star} ${restaurant.stars}</div>`
             : '';
 
-        // Dynamic links
-        const searchQuery = encodeURIComponent(`${restaurant.name} restaurant ${restaurant.address}`);
-        const websiteUrl = `https://www.google.com/search?q=${searchQuery}`;
-        const directionsQuery = encodeURIComponent(`${restaurant.name}, ${restaurant.address}`);
-        const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${directionsQuery}`;
+        // Dynamic links - improved Google Maps integration
+        const mapsSearchQuery = encodeURIComponent(`${restaurant.name}, ${restaurant.address}`);
+        const websiteUrl = `https://www.google.com/maps/search/?api=1&query=${mapsSearchQuery}`;
+        const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapsSearchQuery}`;
 
         card.innerHTML = `
             <div class="card-header">
@@ -223,10 +222,9 @@ function initMarkers() {
     restaurants.forEach(restaurant => {
         const marker = L.marker([restaurant.lat, restaurant.lng]);
 
-        const searchQuery = encodeURIComponent(`${restaurant.name} restaurant ${restaurant.address}`);
-        const websiteUrl = `https://www.google.com/search?q=${searchQuery}`;
-        const directionsQuery = encodeURIComponent(`${restaurant.name}, ${restaurant.address}`);
-        const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${directionsQuery}`;
+        const mapsSearchQuery = encodeURIComponent(`${restaurant.name}, ${restaurant.address}`);
+        const websiteUrl = `https://www.google.com/maps/search/?api=1&query=${mapsSearchQuery}`;
+        const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapsSearchQuery}`;
 
         const popupContent = `
             <div class="custom-popup">
@@ -268,11 +266,33 @@ function initMarkers() {
     }
 }
 
-// Search Functionality
+// Filters and Search Functionality
 const clearButton = document.getElementById('clear-search');
+const cuisineFilter = document.getElementById('cuisine-filter');
+const starsFilter = document.getElementById('stars-filter');
+
+// Initialize filters
+function initializeFilters() {
+    // Extract unique cuisine types
+    const cuisineTypes = [...new Set(restaurants.map(r => r.type))].sort();
+    cuisineTypes.forEach(type => {
+        const option = document.createElement('option');
+        option.value = type;
+        option.textContent = type;
+        cuisineFilter.appendChild(option);
+    });
+}
+
+function getActiveFilters() {
+    const selectedCuisine = cuisineFilter.value;
+    const selectedStars = starsFilter.value;
+    return { selectedCuisine, selectedStars };
+}
 
 function filterList(term) {
-    // Clear existing markers from map (but keep them in memory)
+    const { selectedCuisine, selectedStars } = getActiveFilters();
+
+    // Clear existing markers from map
     map.eachLayer((layer) => {
         if (layer instanceof L.Marker) {
             map.removeLayer(layer);
@@ -282,8 +302,21 @@ function filterList(term) {
     const visibleRestaurants = [];
 
     restaurants.forEach(restaurant => {
-        const visible = restaurant.name.toLowerCase().includes(term) ||
+        // Text search
+        const matchesSearch = !term ||
+            restaurant.name.toLowerCase().includes(term) ||
             restaurant.address.toLowerCase().includes(term);
+
+        // Cuisine filter
+        const matchesCuisine = !selectedCuisine ||
+            selectedCuisine === restaurant.type;
+
+        // Stars filter
+        const matchesStars = !selectedStars ||
+            selectedStars === (restaurant.stars === null ? 'null' : restaurant.stars);
+
+
+        const visible = matchesSearch && matchesCuisine && matchesStars;
 
         if (restaurant.element) {
             restaurant.element.style.display = visible ? 'block' : 'none';
@@ -295,7 +328,7 @@ function filterList(term) {
         }
     });
 
-    // fit bounds to search results if any
+    // Fit bounds to visible results
     if (visibleRestaurants.length > 0) {
         const group = L.featureGroup(visibleRestaurants);
         map.fitBounds(group.getBounds().pad(0.1));
@@ -329,12 +362,13 @@ searchInput.addEventListener('input', handleSearch);
 clearButton.addEventListener('click', () => {
     searchInput.value = '';
     clearButton.style.display = 'none';
-    filterList(''); // Reset filter
+    filterList('');
     searchInput.focus();
 });
 
+
 // Mobile Toggle Logic
-const toggleBtn = document.getElementById('mobile-toggle');
+const toggleBtn = document.getElementById('toggle-map-btn');
 const container = document.querySelector('.container');
 let isMapVisible = false;
 
@@ -344,12 +378,22 @@ if (toggleBtn) {
 
         if (isMapVisible) {
             container.classList.add('show-map');
-            toggleBtn.innerHTML = `Liste`;
+            toggleBtn.innerHTML = `
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+                </svg>
+                Liste
+            `;
             // Map needs a resize event to render correctly when revealing from hidden/zero-size
             setTimeout(() => { map.invalidateSize(); }, 300);
         } else {
             container.classList.remove('show-map');
-            toggleBtn.innerHTML = `Carte`;
+            toggleBtn.innerHTML = `
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/>
+                </svg>
+                Carte
+            `;
         }
     });
 }
@@ -359,7 +403,19 @@ window.addEventListener('load', () => {
     map.invalidateSize();
 });
 
+// Filter event listeners
+cuisineFilter.addEventListener('change', () => {
+    const term = searchInput.value.toLowerCase();
+    filterList(term);
+});
+
+starsFilter.addEventListener('change', () => {
+    const term = searchInput.value.toLowerCase();
+    filterList(term);
+});
+
 // Initial Render
+initializeFilters();
 renderList(restaurants);
 initMarkers();
 

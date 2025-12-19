@@ -104,6 +104,25 @@
                 </div>
             </div>
 
+            <!-- Filters Section -->
+            <div id="filters-container" class="filters-container">
+                <div class="filter-group">
+                    <label for="cuisine-filter">Cuisine</label>
+                    <select id="cuisine-filter">
+                        <option value="">Toutes</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="stars-filter">Étoiles</label>
+                    <select id="stars-filter">
+                        <option value="">Toutes</option>
+                        <option value="3 Stars">⭐⭐⭐</option>
+                        <option value="2 Stars">⭐⭐</option>
+                        <option value="1 Star">⭐</option>
+                        <option value="null">Sans étoile</option>
+                    </select>
+                </div>
+            </div>
 
 
             <div id="restaurant-list" class="restaurant-list">
@@ -111,10 +130,7 @@
             </div>
 
             <div class="referral-banner">
-                <div class="referral-content">
-                    <h4>🎁 Offre de Parrainage</h4>
-                    <p>Profitez d'un bonus de bienvenue exceptionnel American Express.</p>
-                </div>
+                <h4>🎁 Offre de Parrainage</h4>
                 <a href="https://www.americanexpress.com/fr-fr/referral/platinum?ref=kHALIB3yBY" target="_blank"
                     class="btn-referral">
                     Je profite de l'offre
@@ -132,6 +148,15 @@
             <div id="map"></div>
         </main>
     </div>
+
+    <!-- Floating Map Toggle Button (Mobile Only) -->
+    <button id="toggle-map-btn" class="floating-map-btn">
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path
+                d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z" />
+        </svg>
+        Carte
+    </button>
 
     <div id="welcome-modal" class="modal-overlay">
         <div class="modal-content">
@@ -177,13 +202,6 @@
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
-
-    <!-- Mobile Toggle Button -->
-    <div class="mobile-toggle-container">
-        <button id="mobile-toggle" class="btn-toggle">
-            Carte
-        </button>
-    </div>
 
     <!-- Local JS -->
     <script src="script.js" defer></script>
