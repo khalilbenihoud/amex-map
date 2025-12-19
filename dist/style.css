@@ -506,6 +506,26 @@ body {
     height: .85rem
 }
 
+.rating-badge {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background-color: #fffbeb;
+    color: #92400e;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: .75rem;
+    font-weight: 700;
+    border: 1px solid #fef3c7;
+    white-space: nowrap
+}
+
+.rating-star {
+    color: #f59e0b;
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
 .location-row {
     display: flex;
     align-items: flex-start;

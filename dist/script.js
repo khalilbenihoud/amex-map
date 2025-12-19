@@ -1,85 +1,84 @@
 const restaurants = [
-    { name: "114 Faubourg", address: "114 rue du Faubourg Saint-Honoré, 75008 Paris", lat: 48.8732, lng: 2.3134, type: "Française", stars: "1 Star" },
-    { name: "19.20 by Norbert Tarayre", address: "33 avenue George V, 75008 Paris", lat: 48.86903, lng: 2.30083, type: "Française", stars: null },
-    { name: "A L'Epi d'Or", address: "25 rue Jean Jacques Rousseau, 75001 Paris", lat: 48.8629252, lng: 2.3409643, type: "Française", stars: null },
-    { name: "A.T", address: "4 rue du Cardinal Lemoine, 75005 Paris", lat: 48.8475, lng: 2.3516, type: "Française", stars: "1 Star" },
-    { name: "Abysse Monaco", address: "1 square Beaumarchais, 98000 Monaco", lat: 43.7386418, lng: 7.4261396, type: "Japonaise", stars: "2 Stars" },
-    { name: "African queen", address: "Port de Plaisance, 06310 Beaulieu-sur-Mer", lat: 43.7061, lng: 7.3341, type: "Méditerranéenne", stars: null },
-    { name: "Akira Back", address: "33 avenue George V, 75008 Paris", lat: 48.8690, lng: 2.3006, type: "Japonaise", stars: null },
-    { name: "Alain Ducasse Baccarat", address: "11 place des Etats-Unis, 75016 Paris", lat: 48.8672, lng: 2.2933, type: "Française", stars: null },
-    { name: "Allard", address: "41 rue Saint André des Arts, 75006 Paris", lat: 48.8533, lng: 2.3411, type: "Française", stars: null },
-    { name: "Alléno Paris", address: "8 avenue Dutuit, 75008 Paris", lat: 48.8661, lng: 2.3164, type: "Française", stars: "3 Stars" },
-    { name: "AM par Alexandre Mazzia", address: "9 rue François Rocca, 13008 Marseille", lat: 43.2687, lng: 5.3891, type: "Française", stars: "3 Stars" },
-    { name: "Andia", address: "19 chaussée de la Muette, 75016 Paris", lat: 48.8582, lng: 2.2743, type: "Latino-Américaine", stars: null },
-    { name: "Anne", address: "28 place des Vosges, 75003 Paris", lat: 48.8562363, lng: 2.3660257, type: "Française", stars: "1 Star" },
-    { name: "Apicius", address: "20 rue d'Artois, 75008 Paris", lat: 48.8731, lng: 2.3082, type: "Française", stars: "1 Star" },
-    { name: "Astrance", address: "32 rue de Longchamp, 75016 Paris", lat: 48.8664, lng: 2.2902, type: "Française", stars: "1 Star" },
-    { name: "Aux prés", address: "27 rue du Dragon, 75006 Paris", lat: 48.8527577, lng: 2.3304479, type: "Française", stars: null },
-    { name: "Bagatelle Chez Stefano Forever", address: "Les Tamaris, Chemin de la Matarane, 83350 Ramatuelle", lat: 43.2185, lng: 6.6610, type: "Méditerranéenne", stars: null },
-    { name: "Bagatelle Courchevel", address: "Courchevel 1850, Sommet de la Loze, 73120 Saint-Bon-Tarentaise", lat: 45.4093, lng: 6.6192, type: "Méditerranéenne", stars: null },
-    { name: "Baieta", address: "5 rue de Pontoise, 75005 Paris", lat: 48.8492, lng: 2.3533, type: "Méditerranéenne", stars: "1 Star" },
-    { name: "Bambini Megève", address: "Domaine de Meztiva, 1306 Route nationale, 74120 Megève", lat: 45.8650, lng: 6.6250, type: "Italienne", stars: null },
-    { name: "Bambini Paris", address: "13 avenue du Président Wilson, 75016 Paris", lat: 48.8624, lng: 2.2965, type: "Italienne", stars: null },
-    { name: "Bar Vendôme au Ritz Paris", address: "15 place Vendôme, 75001 Paris", lat: 48.8675, lng: 2.3294, type: "Française", stars: null },
-    { name: "Baronne", address: "11 Rue Berryer, 75008 Paris", lat: 48.8756, lng: 2.3069, type: "Française", stars: null },
-    { name: "Baumanière 1850", address: "Route de Bellecote, Courchevel 1850, 73120 Courchevel", lat: 45.4116, lng: 6.6347, type: "Française", stars: null },
-    { name: "BeauCoco Lyon", address: "13 place Jules Ferry, 69006 Lyon", lat: 45.7660, lng: 4.8600, type: "Française", stars: null },
-    { name: "BeauCoco Paris", address: "Palais Garnier - 1 place Jacques Rouché, 75009 Paris", lat: 48.8718, lng: 2.3315, type: "Française", stars: null },
-    { name: "Beefbar Megève", address: "44 rue Charles Feige, 74120 Megève", lat: 45.8570, lng: 6.6177, type: "Française", stars: null },
-    { name: "Beefbar Monaco", address: "42 quai Jean Charles Rey, 98000 Monaco", lat: 43.7297, lng: 7.4243, type: "Steakhouse", stars: null },
-    { name: "Beefbar Paris", address: "5 rue Marbeuf, 75008 Paris", lat: 48.8675, lng: 2.3036, type: "Steakhouse", stars: null },
-    { name: "Beefbar Saint-Tropez", address: "Hôtel Lou Pinet, 70 Chemin du Pinet, 83990 Saint-Tropez", lat: 43.2570, lng: 6.6430, type: "Steakhouse", stars: null },
-    { name: "Bellefeuille (Le Saint James Paris)", address: "5 place du Chancelier Adenauer, 75116 Paris", lat: 48.8687, lng: 2.2778, type: "Française", stars: "1 Star" },
-    { name: "Benoît", address: "20 rue Saint-Martin, 75004 Paris", lat: 48.8584, lng: 2.3481, type: "Française", stars: "1 Star" },
-    { name: "Blue Bay", address: "40 Av. Princesse Grace, 98000 Monaco", lat: 43.7480, lng: 7.4387, type: "Méditerranéenne", stars: "2 Stars" },
-    { name: "Bonnie", address: "10 rue Agrippa d’Aubigné, 75004 Paris", lat: 48.8492, lng: 2.3636, type: "Française", stars: null },
-    { name: "Boubalé", address: "6 rue des Archives, 75004 Paris", lat: 48.8578, lng: 2.3562, type: "Méditerranéenne", stars: null },
-    { name: "Brach", address: "1-7 rue Jean Richepin, 75016 Paris", lat: 48.8617, lng: 2.2725, type: "Méditerranéenne", stars: null },
-    { name: "Brasserie Lipp", address: "151 boulevard Saint Germain, 75006 Paris", lat: 48.8537528, lng: 2.3324105, type: "Française", stars: null },
-    { name: "Brasserie Lutetia", address: "43 boulevard Raspail, 75006 Paris", lat: 48.8511479, lng: 2.3268812, type: "Française", stars: null },
-    { name: "Café Compagnon", address: "22-26 rue Léopold Bellan, 75002 Paris", lat: 48.8665, lng: 2.3456, type: "Française", stars: null },
-    { name: "Café Jeanne", address: "5 rue de la Paix, Park Hyatt Paris - Vendôme, 75002 Paris", lat: 48.8687, lng: 2.3304, type: "Française", stars: null },
-    { name: "Café Lapérouse", address: "2 place de la Concorde, 75008 Paris", lat: 48.8667, lng: 2.3225, type: "Française", stars: null },
-    { name: "Carboni's", address: "45 rue de Poitou, 75003 Paris", lat: 48.8623, lng: 2.3634, type: "Italienne", stars: null },
-    { name: "Casa Amor", address: "Stefano Forever, Chemin de Matarane, 83350 Ramatuelle", lat: 43.2185, lng: 6.6610, type: "Fusion", stars: null },
-    { name: "Chantoiseau", address: "63 rue Lepic, 75018 Paris", lat: 48.8876, lng: 2.3346, type: "Française", stars: null },
-    { name: "Cherry", address: "22 rue du Portalet, 83990 Saint-Tropez", lat: 43.2718, lng: 6.6402, type: "Mexicaine", stars: null },
-    { name: "Cheval Blanc Courchevel", address: "Le Jardin Alpin, 73120 Courchevel", lat: 45.4116, lng: 6.6347, type: "Française", stars: "3 Stars" },
-    { name: "Cheval d'Or", address: "21 rue de la Villette, 75019 Paris", lat: 48.8812, lng: 2.3921, type: "Asiatique", stars: null },
-    { name: "Chiberta", address: "3 rue Harsène Houssaye, 75008 Paris", lat: 48.8735340, lng: 2.2978027, type: "Française", stars: "1 Star" },
-    { name: "Chocho", address: "54 rue Paradis, 75010 Paris", lat: 48.8760, lng: 2.3524, type: "Française", stars: null },
-
-    { name: "Clover Grill", address: "6 rue Bailleul, 75001 Paris", lat: 48.8651, lng: 2.3283, type: "Steakhouse", stars: null },
-    { name: "Clown Bar", address: "114 rue Amelot, 75011 Paris", lat: 48.8637, lng: 2.3686, type: "Française", stars: null },
-    { name: "Corail", address: "11 avenue du Président Wilson, 75116 Paris", lat: 48.8601, lng: 2.2987, type: "Végétarienne", stars: null },
-    { name: "Coretta", address: "151 bis rue Cardinet, 75017 Paris", lat: 48.8754, lng: 2.3435, type: "Française", stars: null },
-    { name: "Da Laura", address: "18 bd Georges Courteline, 06250 Mougins", lat: 43.6001, lng: 7.0091, type: "Italienne", stars: null },
-    { name: "Dante", address: "14 rue de Paradis, 75010 Paris", lat: 48.8760, lng: 2.3524, type: "Européenne", stars: null },
-    { name: "Dar Mima", address: "1 rue des Fossés Saint-Bernard, 75005 Paris", lat: 48.8501, lng: 2.3601, type: "Méditerranéenne", stars: null },
-    { name: "Daroco Bourse", address: "6 rue Vivienne, 75002 Paris", lat: 48.8685, lng: 2.3397, type: "Italienne", stars: null },
-    { name: "David Toutain", address: "29 rue Surcouf, 75007 Paris", lat: 48.8584, lng: 2.3069, type: "Française", stars: "2 Stars" },
-    { name: "Dessirier", address: "9 place du Maréchal Juin, 75017 Paris", lat: 48.8824, lng: 2.2946, type: "Fruits de mer", stars: null },
-    { name: "Divellec", address: "18 rue Fabert, 75007 Paris", lat: 48.8601, lng: 2.3164, type: "Seahouse", stars: "1 Star" },
-    { name: "Don Juan II", address: "Port Debilly, 75016 Paris", lat: 48.8617, lng: 2.2965, type: "Française", stars: "1 Star" },
-    { name: "Dragon", address: "29 rue du Dragon, 75006 Paris", lat: 48.8528, lng: 2.3304, type: "Fusion", stars: null },
-    { name: "Drouant", address: "6 place Gaillon, 75002 Paris", lat: 48.8688, lng: 2.3351, type: "Française", stars: null },
-    { name: "Ducasse Sur Seine", address: "19 Port Debilly, 75116 Paris", lat: 48.8612, lng: 2.2965, type: "Française", stars: null },
-    { name: "Elmer", address: "30 rue Notre Dame de Nazareth, 75003 Paris", lat: 48.8655, lng: 2.3615, type: "Française", stars: null },
-    { name: "Epicure", address: "112 rue du Fabourg Saint Honoré, 75008 Paris", lat: 48.8728, lng: 2.3137, type: "Française", stars: "3 Stars" },
-    { name: "Espadon", address: "15 place Vendôme, 75001 Paris", lat: 48.8675, lng: 2.3294, type: "Française", stars: "1 Star" },
-    { name: "Fontaine Gaillon", address: "1 Rue de la Michodière, 75002 Paris", lat: 48.8690, lng: 2.3353, type: "Française", stars: null },
-    { name: "Fouquet's Paris", address: "46 avenue George V, 75008 Paris", lat: 48.8718, lng: 2.3015, type: "Française", stars: null },
-    { name: "Frédéric Simonin", address: "25 rue Bayen, 75017 Paris", lat: 48.8797, lng: 2.2941, type: "Française", stars: "1 Star" },
-    { name: "Frenchie", address: "5 rue du Nil, 75002 Paris", lat: 48.8676, lng: 2.3475, type: "Française", stars: "1 Star" },
-    { name: "Gaya par Pierre Gagnaire", address: "6 rue Saint-Simon, 75007 Paris", lat: 48.8551, lng: 2.3268, type: "Seahouse", stars: "1 Star" },
-    { name: "Gigi Paris", address: "15 avenue Montaigne, 75008 Paris", lat: 48.8657, lng: 2.3023, type: "Italienne", stars: null },
-    { name: "Gigi Ramatuelle", address: "1050 chemin des Barraques, 83350 Ramatuelle", lat: 43.2185, lng: 6.6610, type: "Italienne", stars: null },
-    { name: "Girafe", address: "Cité de l'Architecture, 1 place du Trocadéro et du 11 Novembre, 75116 Paris", lat: 48.8624, lng: 2.2882, type: "Seahouse", stars: null },
-    { name: "Grande brasserie", address: "6 rue de la Bastille, 75004 Paris", lat: 48.8542, lng: 2.3686, type: "Française", stars: null },
-    { name: "Hakuba", address: "8 quai du Louvre, 75001 Paris", lat: 48.8612, lng: 2.3401, type: "Japonaise", stars: null },
-    { name: "Hanabi", address: "17 rue du Quatre-Septembre, 75002 Paris", lat: 48.8687, lng: 2.3346, type: "Fusion", stars: null },
-    { name: "Hollywood savoy", address: "44 Rue Notre Dame Des Victoires, 75002 Paris", lat: 48.8687, lng: 2.3397, type: "Française", stars: null },
-    { name: "Il Carpaccio", address: "37 avenue Hoche, 75008 Paris", lat: 48.8756, lng: 2.3015, type: "Italienne", stars: "1 Star" },
+    { name: "114 Faubourg", address: "114 rue du Faubourg Saint-Honoré, 75008 Paris", lat: 48.8732, lng: 2.3134, type: "Française", stars: "1 Star", rating: 4.6 },
+    { name: "19.20 by Norbert Tarayre", address: "33 avenue George V, 75008 Paris", lat: 48.86903, lng: 2.30083, type: "Française", stars: null, rating: 4.4 },
+    { name: "A L'Epi d'Or", address: "25 rue Jean Jacques Rousseau, 75001 Paris", lat: 48.8629252, lng: 2.3409643, type: "Française", stars: null, rating: 4.1 },
+    { name: "A.T", address: "4 rue du Cardinal Lemoine, 75005 Paris", lat: 48.8475, lng: 2.3516, type: "Française", stars: "1 Star", rating: 4.7 },
+    { name: "Abysse Monaco", address: "1 square Beaumarchais, 98000 Monaco", lat: 43.7386418, lng: 7.4261396, type: "Japonaise", stars: "2 Stars", rating: 4.8 },
+    { name: "African queen", address: "Port de Plaisance, 06310 Beaulieu-sur-Mer", lat: 43.7061, lng: 7.3341, type: "Méditerranéenne", stars: null, rating: 4.4 },
+    { name: "Akira Back", address: "33 avenue George V, 75008 Paris", lat: 48.8690, lng: 2.3006, type: "Japonaise", stars: null, rating: 4.5 },
+    { name: "Alain Ducasse Baccarat", address: "11 place des Etats-Unis, 75016 Paris", lat: 48.8672, lng: 2.2933, type: "Française", stars: null, rating: 4.3 },
+    { name: "Allard", address: "41 rue Saint André des Arts, 75006 Paris", lat: 48.8533, lng: 2.3411, type: "Française", stars: null, rating: 4.1 },
+    { name: "Alléno Paris", address: "8 avenue Dutuit, 75008 Paris", lat: 48.8661, lng: 2.3164, type: "Française", stars: "3 Stars", rating: 4.6 },
+    { name: "AM par Alexandre Mazzia", address: "9 rue François Rocca, 13008 Marseille", lat: 43.2687, lng: 5.3891, type: "Française", stars: "3 Stars", rating: 4.9 },
+    { name: "Andia", address: "19 chaussée de la Muette, 75016 Paris", lat: 48.8582, lng: 2.2743, type: "Latino-Américaine", stars: null, rating: 4.0 },
+    { name: "Anne", address: "28 place des Vosges, 75003 Paris", lat: 48.8562363, lng: 2.3660257, type: "Française", stars: "1 Star", rating: 4.5 },
+    { name: "Apicius", address: "20 rue d'Artois, 75008 Paris", lat: 48.8731, lng: 2.3082, type: "Française", stars: "1 Star", rating: 4.4 },
+    { name: "Astrance", address: "32 rue de Longchamp, 75016 Paris", lat: 48.8664, lng: 2.2902, type: "Française", stars: "1 Star", rating: 4.6 },
+    { name: "Aux prés", address: "27 rue du Dragon, 75006 Paris", lat: 48.8527577, lng: 2.3304479, type: "Française", stars: null, rating: 4.2 },
+    { name: "Bagatelle Chez Stefano Forever", address: "Les Tamaris, Chemin de la Matarane, 83350 Ramatuelle", lat: 43.2185, lng: 6.6610, type: "Méditerranéenne", stars: null, rating: 4.0 },
+    { name: "Bagatelle Courchevel", address: "Courchevel 1850, Sommet de la Loze, 73120 Saint-Bon-Tarentaise", lat: 45.4093, lng: 6.6192, type: "Méditerranéenne", stars: null, rating: 4.3 },
+    { name: "Baieta", address: "5 rue de Pontoise, 75005 Paris", lat: 48.8492, lng: 2.3533, type: "Méditerranéenne", stars: "1 Star", rating: 4.6 },
+    { name: "Bambini Megève", address: "Domaine de Meztiva, 1306 Route nationale, 74120 Megève", lat: 45.8650, lng: 6.6250, type: "Italienne", stars: null, rating: 4.1 },
+    { name: "Bambini Paris", address: "13 avenue du Président Wilson, 75016 Paris", lat: 48.8624, lng: 2.2965, type: "Italienne", stars: null, rating: 4.2 },
+    { name: "Bar Vendôme au Ritz Paris", address: "15 place Vendôme, 75001 Paris", lat: 48.8675, lng: 2.3294, type: "Française", stars: null, rating: 4.4 },
+    { name: "Baronne", address: "11 Rue Berryer, 75008 Paris", lat: 48.8756, lng: 2.3069, type: "Française", stars: null, rating: 4.5 },
+    { name: "Baumanière 1850", address: "Route de Bellecote, Courchevel 1850, 73120 Courchevel", lat: 45.4116, lng: 6.6347, type: "Française", stars: null, rating: 4.3 },
+    { name: "BeauCoco Lyon", address: "13 place Jules Ferry, 69006 Lyon", lat: 45.7660, lng: 4.8600, type: "Française", stars: null, rating: 4.2 },
+    { name: "BeauCoco Paris", address: "Palais Garnier - 1 place Jacques Rouché, 75009 Paris", lat: 48.8718, lng: 2.3315, type: "Française", stars: null, rating: 4.1 },
+    { name: "Beefbar Megève", address: "44 rue Charles Feige, 74120 Megève", lat: 45.8570, lng: 6.6177, type: "Française", stars: null, rating: 4.4 },
+    { name: "Beefbar Monaco", address: "42 quai Jean Charles Rey, 98000 Monaco", lat: 43.7297, lng: 7.4243, type: "Steakhouse", stars: null, rating: 4.3 },
+    { name: "Beefbar Paris", address: "5 rue Marbeuf, 75008 Paris", lat: 48.8675, lng: 2.3036, type: "Steakhouse", stars: null, rating: 4.2 },
+    { name: "Beefbar Saint-Tropez", address: "Hôtel Lou Pinet, 70 Chemin du Pinet, 83990 Saint-Tropez", lat: 43.2570, lng: 6.6430, type: "Steakhouse", stars: null, rating: 4.5 },
+    { name: "Bellefeuille (Le Saint James Paris)", address: "5 place du Chancelier Adenauer, 75116 Paris", lat: 48.8687, lng: 2.2778, type: "Française", stars: "1 Star", rating: 4.7 },
+    { name: "Benoît", address: "20 rue Saint-Martin, 75004 Paris", lat: 48.8584, lng: 2.3481, type: "Française", stars: "1 Star", rating: 4.3 },
+    { name: "Blue Bay", address: "40 Av. Princesse Grace, 98000 Monaco", lat: 43.7480, lng: 7.4387, type: "Méditerranéenne", stars: "2 Stars", rating: 4.8 },
+    { name: "Bonnie", address: "10 rue Agrippa d’Aubigné, 75004 Paris", lat: 48.8492, lng: 2.3636, type: "Française", stars: null, rating: 4.0 },
+    { name: "Boubalé", address: "6 rue des Archives, 75004 Paris", lat: 48.8578, lng: 2.3562, type: "Méditerranéenne", stars: null, rating: 4.4 },
+    { name: "Brach", address: "1-7 rue Jean Richepin, 75016 Paris", lat: 48.8617, lng: 2.2725, type: "Méditerranéenne", stars: null, rating: 3.9 },
+    { name: "Brasserie Lipp", address: "151 boulevard Saint Germain, 75006 Paris", lat: 48.8537528, lng: 2.3324105, type: "Française", stars: null, rating: 3.5 },
+    { name: "Brasserie Lutetia", address: "43 boulevard Raspail, 75006 Paris", lat: 48.8511479, lng: 2.3268812, type: "Française", stars: null, rating: 4.1 },
+    { name: "Café Compagnon", address: "22-26 rue Léopold Bellan, 75002 Paris", lat: 48.8665, lng: 2.3456, type: "Française", stars: null, rating: 4.2 },
+    { name: "Café Jeanne", address: "5 rue de la Paix, Park Hyatt Paris - Vendôme, 75002 Paris", lat: 48.8687, lng: 2.3304, type: "Française", stars: null, rating: 4.3 },
+    { name: "Café Lapérouse", address: "2 place de la Concorde, 75008 Paris", lat: 48.8667, lng: 2.3225, type: "Française", stars: null, rating: 3.8 },
+    { name: "Carboni's", address: "45 rue de Poitou, 75003 Paris", lat: 48.8623, lng: 2.3634, type: "Italienne", stars: null, rating: 4.4 },
+    { name: "Casa Amor", address: "Stefano Forever, Chemin de Matarane, 83350 Ramatuelle", lat: 43.2185, lng: 6.6610, type: "Fusion", stars: null, rating: 4.0 },
+    { name: "Chantoiseau", address: "63 rue Lepic, 75018 Paris", lat: 48.8876, lng: 2.3346, type: "Française", stars: null, rating: 4.7 },
+    { name: "Cherry", address: "22 rue du Portalet, 83990 Saint-Tropez", lat: 43.2718, lng: 6.6402, type: "Mexicaine", stars: null, rating: 4.2 },
+    { name: "Cheval Blanc Courchevel", address: "Le Jardin Alpin, 73120 Courchevel", lat: 45.4116, lng: 6.6347, type: "Française", stars: "3 Stars", rating: 4.9 },
+    { name: "Cheval d'Or", address: "21 rue de la Villette, 75019 Paris", lat: 48.8812, lng: 2.3921, type: "Asiatique", stars: null, rating: 4.6 },
+    { name: "Chiberta", address: "3 rue Harsène Houssaye, 75008 Paris", lat: 48.8735340, lng: 2.2978027, type: "Française", stars: "1 Star", rating: 4.4 },
+    { name: "Chocho", address: "54 rue Paradis, 75010 Paris", lat: 48.8760, lng: 2.3524, type: "Française", stars: null, rating: 4.5 },
+    { name: "Clover Grill", address: "6 rue Bailleul, 75001 Paris", lat: 48.8651, lng: 2.3283, type: "Steakhouse", stars: null, rating: 4.3 },
+    { name: "Clown Bar", address: "114 rue Amelot, 75011 Paris", lat: 48.8637, lng: 2.3686, type: "Française", stars: null, rating: 4.4 },
+    { name: "Corail", address: "11 avenue du Président Wilson, 75116 Paris", lat: 48.8601, lng: 2.2987, type: "Végétarienne", stars: null, rating: 4.2 },
+    { name: "Coretta", address: "151 bis rue Cardinet, 75017 Paris", lat: 48.8754, lng: 2.3435, type: "Française", stars: null, rating: 4.6 },
+    { name: "Da Laura", address: "18 bd Georges Courteline, 06250 Mougins", lat: 43.6001, lng: 7.0091, type: "Italienne", stars: null, rating: 4.4 },
+    { name: "Dante", address: "14 rue de Paradis, 75010 Paris", lat: 48.8760, lng: 2.3524, type: "Européenne", stars: null, rating: 4.6 },
+    { name: "Dar Mima", address: "1 rue des Fossés Saint-Bernard, 75005 Paris", lat: 48.8501, lng: 2.3601, type: "Méditerranéenne", stars: null, rating: 3.8 },
+    { name: "Daroco Bourse", address: "6 rue Vivienne, 75002 Paris", lat: 48.8685, lng: 2.3397, type: "Italienne", stars: null, rating: 4.2 },
+    { name: "David Toutain", address: "29 rue Surcouf, 75007 Paris", lat: 48.8584, lng: 2.3069, type: "Française", stars: "2 Stars", rating: 4.8 },
+    { name: "Dessirier", address: "9 place du Maréchal Juin, 75017 Paris", lat: 48.8824, lng: 2.2946, type: "Fruits de mer", stars: null, rating: 4.1 },
+    { name: "Divellec", address: "18 rue Fabert, 75007 Paris", lat: 48.8601, lng: 2.3164, type: "Seahouse", stars: "1 Star", rating: 4.3 },
+    { name: "Don Juan II", address: "Port Debilly, 75016 Paris", lat: 48.8617, lng: 2.2965, type: "Française", stars: "1 Star", rating: 4.7 },
+    { name: "Dragon", address: "29 rue du Dragon, 75006 Paris", lat: 48.8528, lng: 2.3304, type: "Fusion", stars: null, rating: 4.3 },
+    { name: "Drouant", address: "6 place Gaillon, 75002 Paris", lat: 48.8688, lng: 2.3351, type: "Française", stars: null, rating: 4.1 },
+    { name: "Ducasse Sur Seine", address: "19 Port Debilly, 75116 Paris", lat: 48.8612, lng: 2.2965, type: "Française", stars: null, rating: 4.5 },
+    { name: "Elmer", address: "30 rue Notre Dame de Nazareth, 75003 Paris", lat: 48.8655, lng: 2.3615, type: "Française", stars: null, rating: 4.6 },
+    { name: "Epicure", address: "112 rue du Fabourg Saint Honoré, 75008 Paris", lat: 48.8728, lng: 2.3137, type: "Française", stars: "3 Stars", rating: 4.8 },
+    { name: "Espadon", address: "15 place Vendôme, 75001 Paris", lat: 48.8675, lng: 2.3294, type: "Française", stars: "1 Star", rating: 4.6 },
+    { name: "Fontaine Gaillon", address: "1 Rue de la Michodière, 75002 Paris", lat: 48.8690, lng: 2.3353, type: "Française", stars: null, rating: 4.2 },
+    { name: "Fouquet's Paris", address: "46 avenue George V, 75008 Paris", lat: 48.8718, lng: 2.3015, type: "Française", stars: null, rating: 4.0 },
+    { name: "Frédéric Simonin", address: "25 rue Bayen, 75017 Paris", lat: 48.8797, lng: 2.2941, type: "Française", stars: "1 Star", rating: 4.7 },
+    { name: "Frenchie", address: "5 rue du Nil, 75002 Paris", lat: 48.8676, lng: 2.3475, type: "Française", stars: "1 Star", rating: 4.5 },
+    { name: "Gaya par Pierre Gagnaire", address: "6 rue Saint-Simon, 75007 Paris", lat: 48.8551, lng: 2.3268, type: "Seahouse", stars: "1 Star", rating: 4.4 },
+    { name: "Gigi Paris", address: "15 avenue Montaigne, 75008 Paris", lat: 48.8657, lng: 2.3023, type: "Italienne", stars: null, rating: 4.2 },
+    { name: "Gigi Ramatuelle", address: "1050 chemin des Barraques, 83350 Ramatuelle", lat: 43.2185, lng: 6.6610, type: "Italienne", stars: null, rating: 4.3 },
+    { name: "Girafe", address: "Cité de l'Architecture, 1 place du Trocadéro et du 11 Novembre, 75116 Paris", lat: 48.8624, lng: 2.2882, type: "Seahouse", stars: null, rating: 4.4 },
+    { name: "Grande brasserie", address: "6 rue de la Bastille, 75004 Paris", lat: 48.8542, lng: 2.3686, type: "Française", stars: null, rating: 4.2 },
+    { name: "Hakuba", address: "8 quai du Louvre, 75001 Paris", lat: 48.8612, lng: 2.3401, type: "Japonaise", stars: null, rating: 4.8 },
+    { name: "Hanabi", address: "17 rue du Quatre-Septembre, 75002 Paris", lat: 48.8687, lng: 2.3346, type: "Fusion", stars: null, rating: 4.5 },
+    { name: "Hollywood savoy", address: "44 Rue Notre Dame Des Victoires, 75002 Paris", lat: 48.8687, lng: 2.3397, type: "Française", stars: null, rating: 3.9 },
+    { name: "Il Carpaccio", address: "37 avenue Hoche, 75008 Paris", lat: 48.8756, lng: 2.3015, type: "Italienne", stars: "1 Star", rating: 4.7 },
     { name: "Il Restaurante Niko Romito", address: "30 avenue George V, 75008 Paris", lat: 48.8690, lng: 2.3006, type: "Italienne", stars: null },
     { name: "Jardin Tropezina", address: "4 route du Pinet, 83350 Ramatuelle", lat: 43.2185, lng: 6.6610, type: "Française", stars: null },
     { name: "Jean Imbert au Plaza Athénée", address: "25 avenue Montaigne, 75008 Paris", lat: 48.8654, lng: 2.3023, type: "Française", stars: "1 Star" },
@@ -167,9 +166,13 @@ function renderList(items) {
         const card = document.createElement('div');
         card.className = 'restaurant-card';
 
-        // Stars Badge HTML
+        // Badges HTML (Michelin Stars & Rating)
         const starHtml = restaurant.stars
             ? `<div class="stars-badge">${ICONS.star} ${restaurant.stars}</div>`
+            : '';
+
+        const ratingHtml = restaurant.rating
+            ? `<div class="rating-badge"><span class="rating-star">★</span> ${restaurant.rating}</div>`
             : '';
 
         // Dynamic links - improved Google Maps integration
@@ -179,8 +182,13 @@ function renderList(items) {
 
         card.innerHTML = `
             <div class="card-header">
-                <h3>${restaurant.name}</h3>
-                ${starHtml}
+                <div>
+                    <h3>${restaurant.name}</h3>
+                    <div style="display: flex; gap: 8px; margin-top: 4px;">
+                        ${starHtml}
+                        ${ratingHtml}
+                    </div>
+                </div>
             </div>
             <div class="location-row">
                 ${ICONS.map}
@@ -229,6 +237,10 @@ function initMarkers() {
         const popupContent = `
             <div class="custom-popup">
                 <h3>${restaurant.name}</h3>
+                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                    ${restaurant.stars ? `<div class="stars-badge" style="padding: 2px 6px; font-size: 0.7rem;">${ICONS.star} ${restaurant.stars}</div>` : ''}
+                    ${restaurant.rating ? `<div class="rating-badge" style="padding: 2px 6px; font-size: 0.7rem;"><span class="rating-star">★</span> ${restaurant.rating}</div>` : ''}
+                </div>
                 <p>${ICONS.map} ${restaurant.address}</p>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; gap:10px;">
                     <div class="popup-tag">${restaurant.type}</div>
