@@ -184,13 +184,9 @@ function renderList(items) {
 
         card.innerHTML = `
             <div class="card-header">
-                <div>
-                    <h3>${restaurant.name}</h3>
-                    <div style="display: flex; gap: 8px; margin-top: 4px;">
-                        ${starHtml}
-                        ${ratingHtml}
-                    </div>
-                </div>
+                <h3>${restaurant.name}</h3>
+                ${starHtml}
+                ${ratingHtml}
             </div>
             <div class="location-row">
                 ${ICONS.map}

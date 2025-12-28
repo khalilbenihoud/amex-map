@@ -224,12 +224,8 @@ body {
     flex-shrink: 0
 }
 
-.filter-group {
-    margin-bottom: 0.75rem
-}
-
 .filter-group:last-of-type {
-    margin-bottom: 1rem
+    margin-bottom: 0rem
 }
 
 .filter-group label {
@@ -349,14 +345,12 @@ body {
     font-size: 0.7rem;
     font-weight: 600;
     color: var(--text-muted);
-    margin-bottom: 0.35rem;
     text-transform: uppercase;
     letter-spacing: 0.03em
 }
 
 .filter-group select {
     width: 100%;
-    padding: 0.625rem 0.75rem;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     font-size: 0.875rem;
@@ -477,14 +471,18 @@ body {
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-main);
-    margin-bottom: .25rem
+    margin-bottom: 0;
+    margin-right: auto;
+    /* Push badges to the right if justifying isn't enough/for safety */
 }
 
 .card-header {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: .5rem
+    gap: 8px;
+    margin-bottom: 0.5rem;
 }
 
 .stars-badge {
@@ -512,7 +510,8 @@ body {
     gap: 4px;
     background-color: #fffbeb;
     color: #92400e;
-    padding: 2px 8px;
+    padding: 4px 8px;
+    /* Matched padding with stars-badge */
     border-radius: 20px;
     font-size: .75rem;
     font-weight: 700;
@@ -680,7 +679,7 @@ body {
 .floating-map-btn {
     display: none;
     position: fixed;
-    bottom: 2rem;
+    bottom: 7rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 50;
@@ -731,25 +730,30 @@ body {
         box-shadow: none
     }
 
-    /* Reorder banner to top on mobile */
+    /* Reorder banner to bottom on mobile - removed specific order to let it flow naturally or force last */
     .sidebar .referral-banner {
-        order: 2
+        order: 10;
+        padding: 0.75rem 1rem;
     }
 
     .sidebar #search-container {
-        order: 3
+        order: 2;
+        padding: 0.5rem 1rem;
     }
 
     .sidebar #filters-container {
-        order: 4
+        order: 3;
+        padding: 0.5rem 1rem;
+        gap: 0.5rem;
     }
 
     .sidebar #restaurant-list {
-        order: 5
+        order: 4;
+        padding: 1rem 1rem 6rem;
     }
 
     .sidebar .disclaimer {
-        order: 6
+        order: 11;
     }
 
     .map-container {
@@ -777,15 +781,44 @@ body {
 
 
     .header {
-        padding: 1rem
+        padding: 0.75rem 1rem;
     }
 
-    #search-container {
-        padding: .5rem 1rem 1rem
+    .header .title {
+        font-size: 1.4rem;
+        margin-bottom: 0;
+    }
+
+    .header .subtitle,
+    .header .header-actions {
+        display: none;
+        /* Hide subtitle and extra actions on mobile to save space */
+    }
+
+    .header .brand {
+        margin-bottom: 0.25rem;
+    }
+
+    /* Compact Filters on Mobile */
+    .filters-container {
+        flex-direction: row;
+        /* Keep row direction if possible */
+        flex-wrap: wrap;
+    }
+
+    .filters-row {
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .filter-group label {
+        display: none;
+        /* Hide labels on mobile to save space */
     }
 
     .restaurant-list {
-        padding: 0 1rem 6rem
+        padding: 0 1rem 5rem;
+        /* Reduced bottom padding */
     }
 }
 
@@ -857,7 +890,7 @@ body {
 
 @media (max-width:768px) {
     .disclaimer {
-        padding-bottom: 8rem
+        padding-bottom: 1rem
     }
 }
 
