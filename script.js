@@ -169,6 +169,48 @@ function initMarkers() {
     }
 }
 
+// Generate LocalBusiness structured data for top restaurants
+function generateLocalBusinessSchema() {
+    // Limit to 10 restaurants to avoid overwhelming the page
+    const topRestaurants = restaurants.slice(0, 10);
+
+    topRestaurants.forEach(restaurant => {
+        const schema = {
+            "@context": "https://schema.org",
+            "@type": "Restaurant",
+            "name": restaurant.name,
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": restaurant.address.split(',')[0],
+                "addressLocality": restaurant.address.split(',').pop().trim(),
+                "addressCountry": "FR"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": restaurant.lat,
+                "longitude": restaurant.lng
+            },
+            "servesCuisine": restaurant.type,
+            "paymentAccepted": "American Express"
+        };
+
+        // Add rating if available
+        if (restaurant.rating) {
+            schema.aggregateRating = {
+                "@type": "AggregateRating",
+                "ratingValue": restaurant.rating,
+                "bestRating": "5"
+            };
+        }
+
+        // Inject into document head
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(schema);
+        document.head.appendChild(script);
+    });
+}
+
 // Initialize filters
 function initializeFilters() {
     if (!restaurants.length) return;
@@ -345,4 +387,5 @@ function initializeApp() {
     renderList(restaurants);
     initMarkers();
     initEventListeners();
+    generateLocalBusinessSchema();
 }

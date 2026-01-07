@@ -26,21 +26,39 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="logo.svg">
 
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://amexdiningmap.com/">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    <link rel="preload" href="data/restaurants.json" as="fetch" crossorigin>
+
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://amexdiningmap.com/">
     <meta property="og:title" content="Amex Dining Map - Restaurants Partenaires">
     <meta property="og:description"
-        content="Carte interactive des plus de 1400 restaurants partenaires American Express en France.">
-    <meta property="og:image" content="https://amexdiningmap.com/og-image.png">
+        content="Carte interactive des 128 restaurants partenaires American Express en France.">
+    <meta property="og:image" content="https://amexdiningmap.com/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Carte des restaurants partenaires American Express Platinum en France">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Amex Dining Map">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://amexdiningmap.com/">
     <meta property="twitter:title" content="Amex Dining Map - Restaurants Partenaires">
     <meta property="twitter:description"
-        content="Carte interactive des plus de 1400 restaurants partenaires American Express en France.">
-    <meta property="twitter:image" content="https://amexdiningmap.com/og-image.png">
+        content="Carte interactive des 128 restaurants partenaires American Express en France.">
+    <meta property="twitter:image" content="https://amexdiningmap.com/og-image.jpg">
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
@@ -55,6 +73,66 @@
         "target": "https://amexdiningmap.com/?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Amex Dining Map",
+      "url": "https://amexdiningmap.com",
+      "logo": "https://amexdiningmap.com/logo.svg",
+      "description": "Carte interactive des restaurants partenaires American Express Platinum en France"
+    }
+    </script>
+
+    <!-- ItemList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Restaurants Partenaires American Express Platinum France",
+      "description": "Collection de 128 restaurants partenaires American Express Platinum en France",
+      "numberOfItems": 128
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Combien de restaurants partenaires Amex Platinum en France ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Il y a actuellement 128 restaurants partenaires American Express Platinum en France, répartis dans les principales villes."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Comment utiliser mon crédit Dining Amex Platinum ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Profitez de 200€ par an de crédit restaurant en France en payant avec votre carte American Express Platinum dans l'un des 128 restaurants partenaires."
+        }
+      }]
+    }
+    </script>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Accueil",
+        "item": "https://amexdiningmap.com/"
+      }]
     }
     </script>
 
@@ -76,7 +154,7 @@
         <aside class="sidebar">
             <header class="header">
                 <a href="/" class="brand" style="text-decoration: none; display: block;">
-                    <img src="logo.svg" alt="Amex Dining Collection" class="logo-img" />
+                    <img src="logo.svg" alt="Amex Dining Collection - Logo" class="logo-img" />
                 </a>
                 <h1 class="title">Dining Collection</h1>
                 <div class="header-actions">
@@ -184,7 +262,7 @@
                         </svg></div>
                     <div class="benefit-text">
                         <h3>Sélection exclusive</h3>
-                        <p>Utilisez votre crédit dans plus de 1 400 restaurants partenaires sélectionnés.</p>
+                        <p>Utilisez votre crédit dans nos 128 restaurants partenaires sélectionnés en France.</p>
                     </div>
                 </div>
                 <a href="https://www.americanexpress.com/fr-fr/referral/platinum?ref=kHALIB3yBY" target="_blank"
