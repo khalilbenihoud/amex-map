@@ -49,7 +49,7 @@ body {
 
 /* SIDEBAR */
 .sidebar {
-    width: 420px;
+    width: 450px;
     background: var(--bg-sidebar);
     display: flex;
     flex-direction: column;
