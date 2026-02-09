@@ -164,6 +164,10 @@ const featureGroup = L.featureGroup();
 
 function renderList(items) {
     listContainer.innerHTML = '';
+    if (!items.length) {
+        listContainer.innerHTML = '<div class="empty-state">Aucun restaurant trouvé</div>';
+        return;
+    }
     items.forEach(restaurant => {
         const card = document.createElement('div');
         card.className = 'restaurant-card';
@@ -342,8 +346,21 @@ function filterList(term) {
         }
     });
 
-    // Fit bounds to visible results
-    if (visibleRestaurants.length > 0) {
+    // Handle empty state message
+    let emptyState = listContainer.querySelector('.empty-state');
+    if (visibleRestaurants.length === 0) {
+        if (!emptyState) {
+            emptyState = document.createElement('div');
+            emptyState.className = 'empty-state';
+            emptyState.textContent = 'Aucun restaurant trouvé';
+            listContainer.appendChild(emptyState);
+        }
+        emptyState.style.display = 'block';
+    } else {
+        if (emptyState) {
+            emptyState.style.display = 'none';
+        }
+        // Fit bounds to visible results
         const group = L.featureGroup(visibleRestaurants);
         map.fitBounds(group.getBounds().pad(0.1));
     }
