@@ -19,36 +19,8 @@ const ICONS = {
     trip: '<svg class="icon" viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>',
     globe: '<svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>',
     list: '<svg class="icon" viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>',
-    mapAlt: '<svg class="icon" viewBox="0 0 24 24"><path d="M20.5 3l-6 2.25L8.5 3 3.5 4.88v16.24l6-2.25 6 2.25 5-1.88V3zM14 19.38l-5.5-2.06v-12l5.5 2.06v12zm-5.5-12.06v12L4 21V5l4.5 2.32zm12 12l-4.5-1.69v-12l4.5 1.69v12z"/></svg>',
-    heart: '<svg class="icon" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>',
-    heartOutline: '<svg class="icon" viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/></svg>'
+    mapAlt: '<svg class="icon" viewBox="0 0 24 24"><path d="M20.5 3l-6 2.25L8.5 3 3.5 4.88v16.24l6-2.25 6 2.25 5-1.88V3zM14 19.38l-5.5-2.06v-12l5.5 2.06v12zm-5.5-12.06v12L4 21V5l4.5 2.32zm12 12l-4.5-1.69v-12l4.5 1.69v12z"/></svg>'
 };
-
-// Favorites management
-function getFavorites() {
-    const favs = localStorage.getItem('amex-favorites');
-    return favs ? JSON.parse(favs) : [];
-}
-
-function saveFavorites(favorites) {
-    localStorage.setItem('amex-favorites', JSON.stringify(favorites));
-}
-
-function toggleFavorite(restaurantName) {
-    const favorites = getFavorites();
-    const index = favorites.indexOf(restaurantName);
-    if (index === -1) {
-        favorites.push(restaurantName);
-    } else {
-        favorites.splice(index, 1);
-    }
-    saveFavorites(favorites);
-    return index === -1; // Returns true if added, false if removed
-}
-
-function isFavorite(restaurantName) {
-    return getFavorites().includes(restaurantName);
-}
 
 // Initialize Map
 const map = L.map('map', {
@@ -102,13 +74,7 @@ function renderList(items) {
         const websiteUrl = `https://www.google.com/maps/search/?api=1&query=${mapsSearchQuery}`;
         const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapsSearchQuery}`;
 
-        // Favorite state
-        const isFav = isFavorite(restaurant.name);
-
         card.innerHTML = `
-            <button class="favorite-btn ${isFav ? 'active' : ''}" title="${isFav ? 'Retirer des favoris' : 'Ajouter aux favoris'}">
-                ${isFav ? ICONS.heart : ICONS.heartOutline}
-            </button>
             <div class="card-header">
                 <h3>${restaurant.name}</h3>
                 ${starHtml}
@@ -130,22 +96,6 @@ function renderList(items) {
                 </div>
             </div>
         `;
-
-        // Favorite button event
-        const favBtn = card.querySelector('.favorite-btn');
-        favBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isNowFav = toggleFavorite(restaurant.name);
-            favBtn.classList.toggle('active', isNowFav);
-            favBtn.innerHTML = isNowFav ? ICONS.heart : ICONS.heartOutline;
-            favBtn.title = isNowFav ? 'Retirer des favoris' : 'Ajouter aux favoris';
-
-            // If favorites filter is active, re-filter the list
-            const favoritesFilter = document.getElementById('favorites-filter');
-            if (favoritesFilter && favoritesFilter.checked) {
-                filterList(searchInput.value.toLowerCase());
-            }
-        });
 
         card.addEventListener('click', () => {
             const marker = markers[restaurant.name];
@@ -287,17 +237,15 @@ function initializeFilters() {
 
 // Get active filters
 function getActiveFilters() {
-    const favoritesFilter = document.getElementById('favorites-filter');
     return {
         selectedCuisine: cuisineFilter.value,
-        selectedStars: starsFilter.value,
-        showFavoritesOnly: favoritesFilter ? favoritesFilter.checked : false
+        selectedStars: starsFilter.value
     };
 }
 
 // Filter functionality
 function filterList(term) {
-    const { selectedCuisine, selectedStars, showFavoritesOnly } = getActiveFilters();
+    const { selectedCuisine, selectedStars } = getActiveFilters();
 
     // Clear existing markers from map
     map.eachLayer((layer) => {
@@ -321,10 +269,7 @@ function filterList(term) {
         const matchesStars = !selectedStars ||
             selectedStars === (restaurant.stars === null ? 'null' : restaurant.stars);
 
-        // Favorites filter
-        const matchesFavorites = !showFavoritesOnly || isFavorite(restaurant.name);
-
-        const visible = matchesSearch && matchesCuisine && matchesStars && matchesFavorites;
+        const visible = matchesSearch && matchesCuisine && matchesStars;
 
         if (restaurant.element) {
             restaurant.element.style.display = visible ? 'block' : 'none';
@@ -398,15 +343,6 @@ function initEventListeners() {
         const term = searchInput.value.toLowerCase();
         filterList(term);
     });
-
-    // Favorites filter listener
-    const favoritesFilter = document.getElementById('favorites-filter');
-    if (favoritesFilter) {
-        favoritesFilter.addEventListener('change', () => {
-            const term = searchInput.value.toLowerCase();
-            filterList(term);
-        });
-    }
 
     // Mobile toggle
     const toggleBtn = document.getElementById('toggle-map-btn');
