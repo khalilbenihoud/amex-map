@@ -45,6 +45,7 @@ const searchInput = document.getElementById('restaurant-search');
 const clearButton = document.getElementById('clear-search');
 const cuisineFilter = document.getElementById('cuisine-filter');
 const starsFilter = document.getElementById('stars-filter');
+const programFilter = document.getElementById('program-filter');
 const featureGroup = L.featureGroup();
 
 // Render restaurant list
@@ -61,6 +62,10 @@ function renderList(items) {
         card.className = 'restaurant-card';
 
         // Badges HTML
+        const programClass = restaurant.program === 'Dining Collection' ? 'dining-collection' : 'credit-dining';
+        const programLabel = restaurant.program === 'Dining Collection' ? 'Collection' : 'Crédit';
+        const programHtml = `<span class="program-badge ${programClass}">${restaurant.program === 'Dining Collection' ? '◆' : '◇'} ${programLabel}</span>`;
+
         const starHtml = restaurant.stars
             ? `<div class="stars-badge">${ICONS.star} ${restaurant.stars}</div>`
             : '';
@@ -77,6 +82,7 @@ function renderList(items) {
         card.innerHTML = `
             <div class="card-header">
                 <h3>${restaurant.name}</h3>
+                ${programHtml}
                 ${starHtml}
                 ${ratingHtml}
             </div>
@@ -129,10 +135,14 @@ function initMarkers() {
         const websiteUrl = `https://www.google.com/maps/search/?api=1&query=${mapsSearchQuery}`;
         const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapsSearchQuery}`;
 
+        const popupProgramClass = restaurant.program === 'Dining Collection' ? 'dining-collection' : 'credit-dining';
+        const popupProgramLabel = restaurant.program === 'Dining Collection' ? 'Collection' : 'Crédit';
+
         const popupContent = `
             <div class="custom-popup">
                 <h3>${restaurant.name}</h3>
-                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
+                    <span class="program-badge ${popupProgramClass}" style="font-size: 0.65rem;">${restaurant.program === 'Dining Collection' ? '◆' : '◇'} ${popupProgramLabel}</span>
                     ${restaurant.stars ? `<div class="stars-badge" style="padding: 2px 6px; font-size: 0.7rem;">${ICONS.star} ${restaurant.stars}</div>` : ''}
                     ${restaurant.rating ? `<div class="rating-badge" style="padding: 2px 6px; font-size: 0.7rem;"><span class="rating-star">★</span> ${restaurant.rating}</div>` : ''}
                 </div>
@@ -239,13 +249,14 @@ function initializeFilters() {
 function getActiveFilters() {
     return {
         selectedCuisine: cuisineFilter.value,
-        selectedStars: starsFilter.value
+        selectedStars: starsFilter.value,
+        selectedProgram: programFilter.value
     };
 }
 
 // Filter functionality
 function filterList(term) {
-    const { selectedCuisine, selectedStars } = getActiveFilters();
+    const { selectedCuisine, selectedStars, selectedProgram } = getActiveFilters();
 
     // Clear existing markers from map
     map.eachLayer((layer) => {
@@ -269,7 +280,10 @@ function filterList(term) {
         const matchesStars = !selectedStars ||
             selectedStars === (restaurant.stars === null ? 'null' : restaurant.stars);
 
-        const visible = matchesSearch && matchesCuisine && matchesStars;
+        // Program filter
+        const matchesProgram = !selectedProgram || selectedProgram === restaurant.program;
+
+        const visible = matchesSearch && matchesCuisine && matchesStars && matchesProgram;
 
         if (restaurant.element) {
             restaurant.element.style.display = visible ? 'block' : 'none';
@@ -334,6 +348,11 @@ function initEventListeners() {
     });
 
     // Filter listeners
+    programFilter.addEventListener('change', () => {
+        const term = searchInput.value.toLowerCase();
+        filterList(term);
+    });
+
     cuisineFilter.addEventListener('change', () => {
         const term = searchInput.value.toLowerCase();
         filterList(term);

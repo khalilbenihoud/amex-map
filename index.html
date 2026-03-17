@@ -94,8 +94,8 @@
       "@context": "https://schema.org",
       "@type": "ItemList",
       "name": "Restaurants Partenaires American Express Platinum France",
-      "description": "Collection de 128 restaurants partenaires American Express Platinum en France",
-      "numberOfItems": 128
+      "description": "Collection de 163 restaurants partenaires American Express Platinum en France",
+      "numberOfItems": 163
     }
     </script>
 
@@ -109,7 +109,7 @@
         "name": "Combien de restaurants partenaires Amex Platinum en France ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Il y a actuellement 128 restaurants partenaires American Express Platinum en France, répartis dans les principales villes."
+          "text": "Il y a actuellement 163 restaurants partenaires American Express Platinum en France, répartis dans les principales villes et disponibles via les programmes Dining Collection et Crédit Dining."
         }
       }, {
         "@type": "Question",
@@ -184,6 +184,14 @@
 
             <!-- Filters Section -->
             <div id="filters-container" class="filters-container">
+                <div class="filter-group">
+                    <label for="program-filter">Programme</label>
+                    <select id="program-filter">
+                        <option value="">Tous</option>
+                        <option value="Dining Collection">Dining Collection</option>
+                        <option value="Crédit Dining">Crédit Dining</option>
+                    </select>
+                </div>
                 <div class="filter-group">
                     <label for="cuisine-filter">Cuisine</label>
                     <select id="cuisine-filter">
