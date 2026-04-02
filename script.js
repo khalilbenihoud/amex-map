@@ -14,7 +14,7 @@ fetch('./data/restaurants.json')
 
 // Icons
 const ICONS = {
-    star: '<svg class="icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>',
+    star: '<svg class="icon" viewBox="0 0 22.0527 22.1191"><path d="M4.16109 20.5469C4.56149 20.8594 5.0693 20.752 5.67477 20.3125L10.8408 16.5137L16.0166 20.3125C16.622 20.752 17.1201 20.8594 17.5302 20.5469C17.9306 20.2441 18.0185 19.7461 17.7744 19.0332L15.7334 12.959L20.9482 9.20898C21.5537 8.7793 21.7978 8.33008 21.6416 7.8418C21.4853 7.37305 21.0263 7.14844 20.2744 7.14844L13.8779 7.14844L11.9345 1.08398C11.7002 0.361328 11.3486 0 10.8408 0C10.3427 0 9.99117 0.361328 9.7568 1.08398L7.81344 7.14844L1.41695 7.14844C0.665001 7.14844 0.206017 7.37305 0.0497668 7.8418C-0.116249 8.33008 0.137657 8.7793 0.743126 9.20898L5.95797 12.959L3.91695 19.0332C3.67281 19.7461 3.7607 20.2441 4.16109 20.5469Z"/></svg>',
     map: '<svg class="icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>',
     trip: '<svg class="icon" viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>',
     globe: '<svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>',
@@ -64,27 +64,28 @@ function renderList(items) {
         // Badges HTML
         const programClass = restaurant.program === 'Dining Collection' ? 'dining-collection' : 'credit-dining';
         const programLabel = restaurant.program === 'Dining Collection' ? 'Collection' : 'Crédit';
-        const programHtml = `<span class="program-badge ${programClass}">${restaurant.program === 'Dining Collection' ? '◆' : '◇'} ${programLabel}</span>`;
+        const programHtml = `<span class="program-badge ${programClass}">${programLabel}</span>`;
 
         const starHtml = restaurant.stars
             ? `<div class="stars-badge">${ICONS.star} ${restaurant.stars}</div>`
             : '';
 
         const ratingHtml = restaurant.rating
-            ? `<div class="rating-badge"><span class="rating-star">★</span> ${restaurant.rating}</div>`
+            ? `<div class="rating-badge">${ICONS.star} ${restaurant.rating}</div>`
             : '';
 
         // Google Maps links
         const mapsSearchQuery = encodeURIComponent(`${restaurant.name}, ${restaurant.address}`);
         const websiteUrl = `https://www.google.com/maps/search/?api=1&query=${mapsSearchQuery}`;
-        const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapsSearchQuery}`;
 
         card.innerHTML = `
             <div class="card-header">
                 <h3>${restaurant.name}</h3>
-                ${programHtml}
-                ${starHtml}
-                ${ratingHtml}
+                <div class="card-badges">
+                    ${programHtml}
+                    ${starHtml}
+                    ${ratingHtml}
+                </div>
             </div>
             <div class="location-row">
                 ${ICONS.map}
@@ -92,14 +93,9 @@ function renderList(items) {
             </div>
             <div class="card-footer">
                 <span class="tag">${restaurant.type}</span>
-                <div class="card-actions">
-                    <a href="${directionsUrl}" target="_blank" class="action-link secondary" onclick="event.stopPropagation()" title="Itinéraire">
-                        ${ICONS.trip}
-                    </a>
-                    <a href="${websiteUrl}" target="_blank" class="action-link primary" onclick="event.stopPropagation()" title="Voir le Restaurant">
-                        ${ICONS.globe} Voir le Restaurant
-                    </a>
-                </div>
+                <a href="${websiteUrl}" target="_blank" class="action-link primary" onclick="event.stopPropagation()" title="Voir le Restaurant">
+                    Voir le Restaurant →
+                </a>
             </div>
         `;
 
@@ -128,40 +124,28 @@ function initMarkers() {
 
     featureGroup.clearLayers();
 
+    const customIcon = L.divIcon({
+        className: 'custom-marker',
+        html: '<div class="marker-circle"><svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>',
+        iconSize: [40, 40],
+        iconAnchor: [20, 20],
+        popupAnchor: [0, -24]
+    });
+
     restaurants.forEach(restaurant => {
-        const marker = L.marker([restaurant.lat, restaurant.lng]);
-
-        const mapsSearchQuery = encodeURIComponent(`${restaurant.name}, ${restaurant.address}`);
-        const websiteUrl = `https://www.google.com/maps/search/?api=1&query=${mapsSearchQuery}`;
-        const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapsSearchQuery}`;
-
-        const popupProgramClass = restaurant.program === 'Dining Collection' ? 'dining-collection' : 'credit-dining';
-        const popupProgramLabel = restaurant.program === 'Dining Collection' ? 'Collection' : 'Crédit';
+        const marker = L.marker([restaurant.lat, restaurant.lng], { icon: customIcon });
 
         const popupContent = `
             <div class="custom-popup">
                 <h3>${restaurant.name}</h3>
-                <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
-                    <span class="program-badge ${popupProgramClass}" style="font-size: 0.65rem;">${restaurant.program === 'Dining Collection' ? '◆' : '◇'} ${popupProgramLabel}</span>
-                    ${restaurant.stars ? `<div class="stars-badge" style="padding: 2px 6px; font-size: 0.7rem;">${ICONS.star} ${restaurant.stars}</div>` : ''}
-                    ${restaurant.rating ? `<div class="rating-badge" style="padding: 2px 6px; font-size: 0.7rem;"><span class="rating-star">★</span> ${restaurant.rating}</div>` : ''}
-                </div>
-                <p>${ICONS.map} ${restaurant.address}</p>
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; gap:10px;">
-                    <div class="popup-tag">${restaurant.type}</div>
-                    <div style="display:flex; gap:8px;">
-                        <a href="${directionsUrl}" target="_blank" class="popup-icon-link" title="Itinéraire">
-                            ${ICONS.trip}
-                        </a>
-                        <a href="${websiteUrl}" target="_blank" class="popup-icon-link" title="Site Web">
-                            ${ICONS.globe}
-                        </a>
-                    </div>
-                </div>
+                <span class="popup-type">${restaurant.type}</span>
             </div>
         `;
 
-        marker.bindPopup(popupContent);
+        marker.bindPopup(popupContent, {
+            closeButton: false,
+            className: 'minimal-popup'
+        });
         marker.addTo(map);
         marker.addTo(featureGroup);
 
