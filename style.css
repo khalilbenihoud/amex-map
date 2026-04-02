@@ -455,6 +455,9 @@ body {
 
 .action-link.primary:hover {
     color: var(--primary-dark);
+    gap: 6px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 /* MAP */
