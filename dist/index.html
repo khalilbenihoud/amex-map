@@ -13,135 +13,150 @@
 
         gtag('config', 'G-P9009XVHHD');
     </script>
-    <title>Amex Dining Map - Restaurants Partenaires France</title>
+    <title>Guide des Restaurants - Tables en France</title>
     <meta name="description"
-        content="Découvrez la liste des restaurants partenaires American Express Platinum en France. Profitez de vos avantages Dining et crédits restaurant jusqu'à 200€/an.">
+        content="Explorez une carte éditoriale de restaurants en France, avec filtres par cuisine et distinctions.">
     <meta name="keywords"
-        content="Amex Dining, Restaurants Platinum, American Express France, Crédit Dining, Gastronomie, Carte Platinum">
-    <meta name="author" content="Amex Dining Collection">
+        content="restaurants France, carte restaurants, gastronomie, Michelin, guide restaurants">
+    <meta name="author" content="Guide des Restaurants">
     <meta name="robots" content="index, follow">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-    <link rel="apple-touch-icon" href="logo.svg">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="style.css?v=20260607-fr" as="style">
+    <link rel="preload" href="script.js?v=20260607-fr" as="script">
+    <link rel="preload" href="data/restaurants.json" as="fetch" crossorigin>
+
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://amexdiningmap.com/">
-    <meta property="og:title" content="Amex Dining Map - Restaurants Partenaires">
+    <meta property="og:title" content="Guide des Restaurants - Tables en France">
     <meta property="og:description"
-        content="Carte interactive des plus de 1400 restaurants partenaires American Express en France.">
-    <meta property="og:image" content="https://amexdiningmap.com/og-image.png">
+        content="Carte interactive de restaurants en France, avec filtres par cuisine et distinctions.">
+    <meta property="og:image" content="og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Carte éditoriale de restaurants en France">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Guide des Restaurants">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://amexdiningmap.com/">
-    <meta property="twitter:title" content="Amex Dining Map - Restaurants Partenaires">
+    <meta property="twitter:title" content="Guide des Restaurants - Tables en France">
     <meta property="twitter:description"
-        content="Carte interactive des plus de 1400 restaurants partenaires American Express en France.">
-    <meta property="twitter:image" content="https://amexdiningmap.com/og-image.png">
+        content="Carte interactive de restaurants en France, avec filtres par cuisine et distinctions.">
+    <meta property="twitter:image" content="og-image.jpg">
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "Amex Dining Collection",
-      "url": "https://amexdiningmap.com/",
-      "description": "Carte interactive des restaurants partenaires American Express Platinum en France.",
+      "name": "Guide des Restaurants",
+      "description": "Carte interactive de restaurants en France.",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://amexdiningmap.com/?q={search_term_string}",
+        "target": "/?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
+    }
+    </script>
+
+    <!-- ItemList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Restaurants en France",
+      "description": "Collection éditoriale de restaurants en France",
+      "numberOfItems": 163
     }
     </script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
     <!-- Local CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=20260607-fr">
 </head>
 
 <body>
     <div class="container">
         <aside class="sidebar">
-            <header class="header">
-                <a href="/" class="brand" style="text-decoration: none; display: block;">
-                    <img src="logo.svg" alt="Amex Dining Collection" class="logo-img" />
-                </a>
-                <h1 class="title">Dining Collection</h1>
-                <div class="header-actions">
-                    <p class="subtitle">La sélection Platinum</p>
-                    <button id="info-btn" class="btn-text">
-                        <svg class="icon" viewBox="0 0 24 24">
+            <div class="floating-search-header">
+                <header class="header">
+                    <a href="/" class="brand" style="text-decoration: none;">
+                        Guide des Restaurants
+                    </a>
+                    <h1 class="title">Tables de France</h1>
+                    <div class="header-actions">
+                        <p class="subtitle">Sélection éditoriale</p>
+                    </div>
+                </header>
+
+                <div id="search-container">
+                    <div class="search-wrapper">
+                        <svg class="icon search-icon" viewBox="0 0 24 24">
                             <path
-                                d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-                        </svg> En savoir plus
-                    </button>
-                </div>
-            </header>
-
-            <div id="search-container">
-                <div class="search-wrapper">
-                    <svg class="icon search-icon" viewBox="0 0 24 24">
-                        <path
-                            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
-                    </svg>
-                    <input type="text" id="restaurant-search" placeholder="Rechercher par nom, ville...">
-                    <svg class="icon clear-search" id="clear-search" viewBox="0 0 24 24">
-                        <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                    </svg>
+                                d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                        </svg>
+                        <input type="text" id="restaurant-search" placeholder="Rechercher un restaurant, une ville, une cuisine...">
+                        <svg class="icon clear-search" id="clear-search" viewBox="0 0 24 24">
+                            <path
+                                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                        </svg>
+                    </div>
                 </div>
             </div>
 
-            <!-- Filters Section -->
-            <div id="filters-container" class="filters-container">
-                <div class="filter-group">
-                    <label for="cuisine-filter">Cuisine</label>
-                    <select id="cuisine-filter">
-                        <option value="">Toutes</option>
-                    </select>
+            <section class="results-sheet">
+                <div class="sheet-handle" aria-hidden="true"></div>
+
+                <div id="filters-container" class="filters-container">
+                    <div class="filters-meta">
+                        <span id="result-count" class="result-count">0 restaurant</span>
+                        <button id="clear-all-filters" class="clear-all-filters" type="button">Réinitialiser</button>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-label">Distinction</div>
+                        <div id="stars-filter" class="chip-row" role="group" aria-label="Filtrer par distinction">
+                            <button class="filter-chip active" type="button" data-filter-type="stars" data-filter-value="">Toutes</button>
+                            <button class="filter-chip" type="button" data-filter-type="stars" data-filter-value="starred">Michelin</button>
+                            <button class="filter-chip" type="button" data-filter-type="stars" data-filter-value="3 Stars">3 étoiles</button>
+                            <button class="filter-chip" type="button" data-filter-type="stars" data-filter-value="2 Stars">2 étoiles</button>
+                            <button class="filter-chip" type="button" data-filter-type="stars" data-filter-value="1 Star">1 étoile</button>
+                            <button class="filter-chip" type="button" data-filter-type="stars" data-filter-value="null">Sans étoile</button>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-label">Cuisine</div>
+                        <div id="cuisine-filter" class="chip-row" role="group" aria-label="Filtrer par cuisine">
+                            <button class="filter-chip active" type="button" data-filter-type="cuisine" data-filter-value="">Toutes les cuisines</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="filter-group">
-                    <label for="stars-filter">Étoiles</label>
-                    <select id="stars-filter">
-                        <option value="">Toutes</option>
-                        <option value="3 Stars">⭐⭐⭐</option>
-                        <option value="2 Stars">⭐⭐</option>
-                        <option value="1 Star">⭐</option>
-                        <option value="null">Sans étoile</option>
-                    </select>
+
+                <div id="restaurant-list" class="restaurant-list">
+                    <!-- Restaurant items will be populated by JS -->
                 </div>
-            </div>
-
-
-            <div id="restaurant-list" class="restaurant-list">
-                <!-- Restaurant items will be populated by JS -->
-            </div>
-
-            <div class="referral-banner">
-                <h4>🎁 Offre de Parrainage</h4>
-                <a href="https://www.americanexpress.com/fr-fr/referral/platinum?ref=kHALIB3yBY" target="_blank"
-                    class="btn-referral">
-                    Je profite de l'offre
-                </a>
-            </div>
-
-            <div class="disclaimer">
-                Ce site n'est pas affilié à American Express. <a
-                    href="https://www.americanexpress.com/fr-fr/benefits/diningbenefit/" target="_blank"
-                    style="color: inherit; text-decoration: underline;">Voir la liste officielle</a>.
-            </div>
+            </section>
         </aside>
 
         <main class="map-container">
@@ -149,62 +164,12 @@
         </main>
     </div>
 
-    <!-- Floating Map Toggle Button (Mobile Only) -->
-    <button id="toggle-map-btn" class="floating-map-btn">
-        <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-            <path
-                d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z" />
-        </svg>
-        Carte
-    </button>
-
-    <div id="welcome-modal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Avantages Carte AMEX Platinum</h2>
-                <button id="close-modal" class="close-btn"><svg class="icon" viewBox="0 0 24 24">
-                        <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                    </svg></button>
-            </div>
-            <div class="modal-body">
-                <div class="benefit-item">
-                    <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24">
-                            <path
-                                d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z" />
-                        </svg></div>
-                    <div class="benefit-text">
-                        <h3>200€ de Remboursement</h3>
-                        <p>Bénéficiez de 200€ par an de crédit restaurant en France (100€ par semestre).</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24">
-                            <path d="M20 4H4v2h16V4zm1 10v-2l-1-5H4l-1 5v2h1v6h10v-6h4v6h2v-6h1zm-9 4H6v-4h6v4z" />
-                        </svg></div>
-                    <div class="benefit-text">
-                        <h3>Sélection exclusive</h3>
-                        <p>Utilisez votre crédit dans plus de 1 400 restaurants partenaires sélectionnés.</p>
-                    </div>
-                </div>
-                <a href="https://www.americanexpress.com/fr-fr/referral/platinum?ref=kHALIB3yBY" target="_blank"
-                    class="btn-primary full-width"
-                    style="margin-bottom: 10px; text-decoration: none; text-align: center;">
-                    Je demande ma carte AMEX
-                </a>
-                <button id="start-btn" class="btn-secondary full-width">
-                    Explorer la Carte
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
 
     <!-- Local JS -->
-    <script src="script.js" defer></script>
+    <script src="script.js?v=20260607-fr" defer></script>
 </body>
 
 </html>

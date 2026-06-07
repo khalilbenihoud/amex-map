@@ -1,139 +1,20 @@
-const restaurants = [
-    { name: "114 Faubourg", address: "114 rue du Faubourg Saint-Honoré, 75008 Paris", lat: 48.8732, lng: 2.3134, type: "Française", stars: "1 Star", rating: 4.6 },
-    { name: "19.20 by Norbert Tarayre", address: "33 avenue George V, 75008 Paris", lat: 48.86903, lng: 2.30083, type: "Française", stars: null, rating: 4.4 },
-    { name: "A L'Epi d'Or", address: "25 rue Jean Jacques Rousseau, 75001 Paris", lat: 48.8629252, lng: 2.3409643, type: "Française", stars: null, rating: 4.1 },
-    { name: "A.T", address: "4 rue du Cardinal Lemoine, 75005 Paris", lat: 48.8475, lng: 2.3516, type: "Française", stars: "1 Star", rating: 4.7 },
-    { name: "Abysse Monaco", address: "1 square Beaumarchais, 98000 Monaco", lat: 43.7386418, lng: 7.4261396, type: "Japonaise", stars: "2 Stars", rating: 4.8 },
-    { name: "African queen", address: "Port de Plaisance, 06310 Beaulieu-sur-Mer", lat: 43.7061, lng: 7.3341, type: "Méditerranéenne", stars: null, rating: 4.4 },
-    { name: "Akira Back", address: "33 avenue George V, 75008 Paris", lat: 48.8690, lng: 2.3006, type: "Japonaise", stars: null, rating: 4.5 },
-    { name: "Alain Ducasse Baccarat", address: "11 place des Etats-Unis, 75016 Paris", lat: 48.8672, lng: 2.2933, type: "Française", stars: null, rating: 4.3 },
-    { name: "Allard", address: "41 rue Saint André des Arts, 75006 Paris", lat: 48.8533, lng: 2.3411, type: "Française", stars: null, rating: 4.1 },
-    { name: "Alléno Paris", address: "8 avenue Dutuit, 75008 Paris", lat: 48.8661, lng: 2.3164, type: "Française", stars: "3 Stars", rating: 4.6 },
-    { name: "AM par Alexandre Mazzia", address: "9 rue François Rocca, 13008 Marseille", lat: 43.2687, lng: 5.3891, type: "Française", stars: "3 Stars", rating: 4.9 },
-    { name: "Andia", address: "19 chaussée de la Muette, 75016 Paris", lat: 48.8582, lng: 2.2743, type: "Latino-Américaine", stars: null, rating: 4.0 },
-    { name: "Anne", address: "28 place des Vosges, 75003 Paris", lat: 48.8562363, lng: 2.3660257, type: "Française", stars: "1 Star", rating: 4.5 },
-    { name: "Apicius", address: "20 rue d'Artois, 75008 Paris", lat: 48.8731, lng: 2.3082, type: "Française", stars: "1 Star", rating: 4.4 },
-    { name: "Astrance", address: "32 rue de Longchamp, 75016 Paris", lat: 48.8664, lng: 2.2902, type: "Française", stars: "1 Star", rating: 4.6 },
-    { name: "Aux prés", address: "27 rue du Dragon, 75006 Paris", lat: 48.8527577, lng: 2.3304479, type: "Française", stars: null, rating: 4.2 },
-    { name: "Bagatelle Chez Stefano Forever", address: "Les Tamaris, Chemin de la Matarane, 83350 Ramatuelle", lat: 43.2185, lng: 6.6610, type: "Méditerranéenne", stars: null, rating: 4.0 },
-    { name: "Bagatelle Courchevel", address: "Courchevel 1850, Sommet de la Loze, 73120 Saint-Bon-Tarentaise", lat: 45.4093, lng: 6.6192, type: "Méditerranéenne", stars: null, rating: 4.3 },
-    { name: "Baieta", address: "5 rue de Pontoise, 75005 Paris", lat: 48.8492, lng: 2.3533, type: "Méditerranéenne", stars: "1 Star", rating: 4.6 },
-    { name: "Bambini Megève", address: "Domaine de Meztiva, 1306 Route nationale, 74120 Megève", lat: 45.8650, lng: 6.6250, type: "Italienne", stars: null, rating: 4.1 },
-    { name: "Bambini Paris", address: "13 avenue du Président Wilson, 75016 Paris", lat: 48.8624, lng: 2.2965, type: "Italienne", stars: null, rating: 4.2 },
-    { name: "Bar Vendôme au Ritz Paris", address: "15 place Vendôme, 75001 Paris", lat: 48.8675, lng: 2.3294, type: "Française", stars: null, rating: 4.4 },
-    { name: "Baronne", address: "11 Rue Berryer, 75008 Paris", lat: 48.8756, lng: 2.3069, type: "Française", stars: null, rating: 4.5 },
-    { name: "Baumanière 1850", address: "Route de Bellecote, Courchevel 1850, 73120 Courchevel", lat: 45.4116, lng: 6.6347, type: "Française", stars: null, rating: 4.3 },
-    { name: "BeauCoco Lyon", address: "13 place Jules Ferry, 69006 Lyon", lat: 45.7660, lng: 4.8600, type: "Française", stars: null, rating: 4.2 },
-    { name: "BeauCoco Paris", address: "Palais Garnier - 1 place Jacques Rouché, 75009 Paris", lat: 48.8718, lng: 2.3315, type: "Française", stars: null, rating: 4.1 },
-    { name: "Beefbar Megève", address: "44 rue Charles Feige, 74120 Megève", lat: 45.8570, lng: 6.6177, type: "Française", stars: null, rating: 4.4 },
-    { name: "Beefbar Monaco", address: "42 quai Jean Charles Rey, 98000 Monaco", lat: 43.7297, lng: 7.4243, type: "Steakhouse", stars: null, rating: 4.3 },
-    { name: "Beefbar Paris", address: "5 rue Marbeuf, 75008 Paris", lat: 48.8675, lng: 2.3036, type: "Steakhouse", stars: null, rating: 4.2 },
-    { name: "Beefbar Saint-Tropez", address: "Hôtel Lou Pinet, 70 Chemin du Pinet, 83990 Saint-Tropez", lat: 43.2570, lng: 6.6430, type: "Steakhouse", stars: null, rating: 4.5 },
-    { name: "Bellefeuille (Le Saint James Paris)", address: "5 place du Chancelier Adenauer, 75116 Paris", lat: 48.8687, lng: 2.2778, type: "Française", stars: "1 Star", rating: 4.7 },
-    { name: "Benoît", address: "20 rue Saint-Martin, 75004 Paris", lat: 48.8584, lng: 2.3481, type: "Française", stars: "1 Star", rating: 4.3 },
-    { name: "Blue Bay", address: "40 Av. Princesse Grace, 98000 Monaco", lat: 43.7480, lng: 7.4387, type: "Méditerranéenne", stars: "2 Stars", rating: 4.8 },
-    { name: "Bonnie", address: "10 rue Agrippa d’Aubigné, 75004 Paris", lat: 48.8492, lng: 2.3636, type: "Française", stars: null, rating: 4.0 },
-    { name: "Boubalé", address: "6 rue des Archives, 75004 Paris", lat: 48.8578, lng: 2.3562, type: "Méditerranéenne", stars: null, rating: 4.4 },
-    { name: "Brach", address: "1-7 rue Jean Richepin, 75016 Paris", lat: 48.8617, lng: 2.2725, type: "Méditerranéenne", stars: null, rating: 3.9 },
-    { name: "Brasserie Lipp", address: "151 boulevard Saint Germain, 75006 Paris", lat: 48.8537528, lng: 2.3324105, type: "Française", stars: null, rating: 3.5 },
-    { name: "Brasserie Lutetia", address: "43 boulevard Raspail, 75006 Paris", lat: 48.8511479, lng: 2.3268812, type: "Française", stars: null, rating: 4.1 },
-    { name: "Café Compagnon", address: "22-26 rue Léopold Bellan, 75002 Paris", lat: 48.8665, lng: 2.3456, type: "Française", stars: null, rating: 4.2 },
-    { name: "Café Jeanne", address: "5 rue de la Paix, Park Hyatt Paris - Vendôme, 75002 Paris", lat: 48.8687, lng: 2.3304, type: "Française", stars: null, rating: 4.3 },
-    { name: "Café Lapérouse", address: "2 place de la Concorde, 75008 Paris", lat: 48.8667, lng: 2.3225, type: "Française", stars: null, rating: 3.8 },
-    { name: "Carboni's", address: "45 rue de Poitou, 75003 Paris", lat: 48.8623, lng: 2.3634, type: "Italienne", stars: null, rating: 4.4 },
-    { name: "Casa Amor", address: "Stefano Forever, Chemin de Matarane, 83350 Ramatuelle", lat: 43.2185, lng: 6.6610, type: "Fusion", stars: null, rating: 4.0 },
-    { name: "Chantoiseau", address: "63 rue Lepic, 75018 Paris", lat: 48.8876, lng: 2.3346, type: "Française", stars: null, rating: 4.7 },
-    { name: "Cherry", address: "22 rue du Portalet, 83990 Saint-Tropez", lat: 43.2718, lng: 6.6402, type: "Mexicaine", stars: null, rating: 4.2 },
-    { name: "Cheval Blanc Courchevel", address: "Le Jardin Alpin, 73120 Courchevel", lat: 45.4116, lng: 6.6347, type: "Française", stars: "3 Stars", rating: 4.9 },
-    { name: "Cheval d'Or", address: "21 rue de la Villette, 75019 Paris", lat: 48.8812, lng: 2.3921, type: "Asiatique", stars: null, rating: 4.6 },
-    { name: "Chiberta", address: "3 rue Harsène Houssaye, 75008 Paris", lat: 48.8735340, lng: 2.2978027, type: "Française", stars: "1 Star", rating: 4.4 },
-    { name: "Chocho", address: "54 rue Paradis, 75010 Paris", lat: 48.8760, lng: 2.3524, type: "Française", stars: null, rating: 4.5 },
-    { name: "Clover Grill", address: "6 rue Bailleul, 75001 Paris", lat: 48.8651, lng: 2.3283, type: "Steakhouse", stars: null, rating: 4.3 },
-    { name: "Clown Bar", address: "114 rue Amelot, 75011 Paris", lat: 48.8637, lng: 2.3686, type: "Française", stars: null, rating: 4.4 },
-    { name: "Corail", address: "11 avenue du Président Wilson, 75116 Paris", lat: 48.8601, lng: 2.2987, type: "Végétarienne", stars: null, rating: 4.2 },
-    { name: "Coretta", address: "151 bis rue Cardinet, 75017 Paris", lat: 48.8754, lng: 2.3435, type: "Française", stars: null, rating: 4.6 },
-    { name: "Da Laura", address: "18 bd Georges Courteline, 06250 Mougins", lat: 43.6001, lng: 7.0091, type: "Italienne", stars: null, rating: 4.4 },
-    { name: "Dante", address: "14 rue de Paradis, 75010 Paris", lat: 48.8760, lng: 2.3524, type: "Européenne", stars: null, rating: 4.6 },
-    { name: "Dar Mima", address: "1 rue des Fossés Saint-Bernard, 75005 Paris", lat: 48.8501, lng: 2.3601, type: "Méditerranéenne", stars: null, rating: 3.8 },
-    { name: "Daroco Bourse", address: "6 rue Vivienne, 75002 Paris", lat: 48.8685, lng: 2.3397, type: "Italienne", stars: null, rating: 4.2 },
-    { name: "David Toutain", address: "29 rue Surcouf, 75007 Paris", lat: 48.8584, lng: 2.3069, type: "Française", stars: "2 Stars", rating: 4.8 },
-    { name: "Dessirier", address: "9 place du Maréchal Juin, 75017 Paris", lat: 48.8824, lng: 2.2946, type: "Fruits de mer", stars: null, rating: 4.1 },
-    { name: "Divellec", address: "18 rue Fabert, 75007 Paris", lat: 48.8601, lng: 2.3164, type: "Seahouse", stars: "1 Star", rating: 4.3 },
-    { name: "Don Juan II", address: "Port Debilly, 75016 Paris", lat: 48.8617, lng: 2.2965, type: "Française", stars: "1 Star", rating: 4.7 },
-    { name: "Dragon", address: "29 rue du Dragon, 75006 Paris", lat: 48.8528, lng: 2.3304, type: "Fusion", stars: null, rating: 4.3 },
-    { name: "Drouant", address: "6 place Gaillon, 75002 Paris", lat: 48.8688, lng: 2.3351, type: "Française", stars: null, rating: 4.1 },
-    { name: "Ducasse Sur Seine", address: "19 Port Debilly, 75116 Paris", lat: 48.8612, lng: 2.2965, type: "Française", stars: null, rating: 4.5 },
-    { name: "Elmer", address: "30 rue Notre Dame de Nazareth, 75003 Paris", lat: 48.8655, lng: 2.3615, type: "Française", stars: null, rating: 4.6 },
-    { name: "Epicure", address: "112 rue du Fabourg Saint Honoré, 75008 Paris", lat: 48.8728, lng: 2.3137, type: "Française", stars: "3 Stars", rating: 4.8 },
-    { name: "Espadon", address: "15 place Vendôme, 75001 Paris", lat: 48.8675, lng: 2.3294, type: "Française", stars: "1 Star", rating: 4.6 },
-    { name: "Fontaine Gaillon", address: "1 Rue de la Michodière, 75002 Paris", lat: 48.8690, lng: 2.3353, type: "Française", stars: null, rating: 4.2 },
-    { name: "Fouquet's Paris", address: "46 avenue George V, 75008 Paris", lat: 48.8718, lng: 2.3015, type: "Française", stars: null, rating: 4.0 },
-    { name: "Frédéric Simonin", address: "25 rue Bayen, 75017 Paris", lat: 48.8797, lng: 2.2941, type: "Française", stars: "1 Star", rating: 4.7 },
-    { name: "Frenchie", address: "5 rue du Nil, 75002 Paris", lat: 48.8676, lng: 2.3475, type: "Française", stars: "1 Star", rating: 4.5 },
-    { name: "Gaya par Pierre Gagnaire", address: "6 rue Saint-Simon, 75007 Paris", lat: 48.8551, lng: 2.3268, type: "Seahouse", stars: "1 Star", rating: 4.4 },
-    { name: "Gigi Paris", address: "15 avenue Montaigne, 75008 Paris", lat: 48.8657, lng: 2.3023, type: "Italienne", stars: null, rating: 4.2 },
-    { name: "Gigi Ramatuelle", address: "1050 chemin des Barraques, 83350 Ramatuelle", lat: 43.2185, lng: 6.6610, type: "Italienne", stars: null, rating: 4.3 },
-    { name: "Girafe", address: "Cité de l'Architecture, 1 place du Trocadéro et du 11 Novembre, 75116 Paris", lat: 48.8624, lng: 2.2882, type: "Seahouse", stars: null, rating: 4.4 },
-    { name: "Grande brasserie", address: "6 rue de la Bastille, 75004 Paris", lat: 48.8542, lng: 2.3686, type: "Française", stars: null, rating: 4.2 },
-    { name: "Hakuba", address: "8 quai du Louvre, 75001 Paris", lat: 48.8612, lng: 2.3401, type: "Japonaise", stars: null, rating: 4.8 },
-    { name: "Hanabi", address: "17 rue du Quatre-Septembre, 75002 Paris", lat: 48.8687, lng: 2.3346, type: "Fusion", stars: null, rating: 4.5 },
-    { name: "Hollywood savoy", address: "44 Rue Notre Dame Des Victoires, 75002 Paris", lat: 48.8687, lng: 2.3397, type: "Française", stars: null, rating: 3.9 },
-    { name: "Il Carpaccio", address: "37 avenue Hoche, 75008 Paris", lat: 48.8756, lng: 2.3015, type: "Italienne", stars: "1 Star", rating: 4.7 },
-    { name: "Il Restaurante Niko Romito", address: "30 avenue George V, 75008 Paris", lat: 48.8690, lng: 2.3006, type: "Italienne", stars: null },
-    { name: "Jardin Tropezina", address: "4 route du Pinet, 83350 Ramatuelle", lat: 43.2185, lng: 6.6610, type: "Française", stars: null },
-    { name: "Jean Imbert au Plaza Athénée", address: "25 avenue Montaigne, 75008 Paris", lat: 48.8654, lng: 2.3023, type: "Française", stars: "1 Star" },
-    { name: "Jòia", address: "39 rue des Jeuneurs, 75002 Paris", lat: 48.8697, lng: 2.3435, type: "Française", stars: null },
-    { name: "Kaito", address: "373 chemin des Follières, 74120 Megève", lat: 45.8570, lng: 6.6177, type: "Japonaise", stars: null },
-    { name: "Kalamata", address: "31 rue de la Boétie, 75008 Paris", lat: 48.8742, lng: 2.3115, type: "Méditerranéenne", stars: null },
-    { name: "Koori", address: "5 rue Emile Allais, 73120 Courchevel", lat: 45.4162, lng: 6.6358, type: "Japonaise", stars: null },
-    { name: "L'Abysse", address: "8 avenue Dutuit, 75008 Paris", lat: 48.8661, lng: 2.3164, type: "Japonaise", stars: "2 Stars" },
-    { name: "L'Altiplano", address: "238 rue des Clarines, 73120 Saint-Bon-Tarentaise", lat: 45.4162, lng: 6.6358, type: "Péruvienne", stars: null },
-    { name: "L'Altiplano 2.0", address: "143 avenue du Prariond, 73150 Val d'Isère", lat: 45.4480, lng: 6.9800, type: "Péruvienne", stars: null },
-    { name: "L'Altitude", address: "356 route de l'Altiport, Courchevel", lat: 45.4162, lng: 6.6358, type: "Française", stars: null },
-    { name: "L'Atelier de Joël Robuchon Etoile", address: "Publicis Drugstore, 133 avenue des Champs Elysée, 75008 Paris", lat: 48.8735, lng: 2.2941, type: "Française", stars: "1 Star" },
-    { name: "L'Atelier Maître Albert", address: "1 rue Maître Albert, 75005 Paris", lat: 48.8511, lng: 2.3502, type: "Française", stars: null },
-    { name: "L'Atelier Saint Germain", address: "5 rue Montalembert, 75007 Paris", lat: 48.8553, lng: 2.3243, type: "Française", stars: null },
-    { name: "L'Attilio Paris", address: "184 rue Faubourg Saint-Honoré, 75008 Paris", lat: 48.8731, lng: 2.3082, type: "Française", stars: null },
+let restaurants = [];
 
-    { name: "L'Avenue", address: "41 avenue Montaigne, 75008 Paris", lat: 48.8657, lng: 2.3023, type: "Française", stars: null },
-    { name: "L'Ecrin", address: "10 place de la Concorde, 75008 Paris", lat: 48.8667, lng: 2.3225, type: "Française", stars: "1 Star" },
-    { name: "L'Hostellerie de l'Abbaye de la Celle", address: "Place Général de Gaulle, 83170 La Celle", lat: 43.3931, lng: 6.0401, type: "Méditerranéenne", stars: "1 Star" },
-    { name: "L'Oiseau Blanc", address: "19 avenue Kleber, 75116 Paris", lat: 48.8712, lng: 2.2965, type: "Française", stars: "2 Stars" },
-    { name: "L'Ekrin à l'hôtel Le Kaila", address: "124 rue des Jeux Olympiques, 73550 Meribel", lat: 45.3941, lng: 6.5658, type: "Française", stars: "1 Star" },
-    { name: "La Bastide de Moustiers", address: "Chemin Quinson, 04360 Moustiers Sainte Marie", lat: 43.8409, lng: 6.2180, type: "Française", stars: "1 Star" },
-    { name: "La Bauhinia", address: "10 avenue d'Iéna, 75116 Paris", lat: 48.8637, lng: 2.2933, type: "Asiatique", stars: null },
-    { name: "La Chambre Bleue", address: "4 Rue d'Anjou, 75008 Paris", lat: 48.8690, lng: 2.3225, type: "Méditerranéenne", stars: null },
-    { name: "La Coupole", address: "102 boulevard Montparnasse, 75014 Paris", lat: 48.8423, lng: 2.3275, type: "Française", stars: null },
-    { name: "La Cour Jardin", address: "25 avenue Montaigne, 75008 Paris", lat: 48.8654, lng: 2.3023, type: "Française", stars: null },
-    { name: "La Cucucina La Folie Douce", address: "La Daille, 73150 Val d'Isère", lat: 45.4480, lng: 6.9800, type: "Italienne", stars: null },
-    { name: "La Fruitière La Folie Douce", address: "La Daille, 73150 Val d'Isère", lat: 45.4480, lng: 6.9800, type: "Française", stars: null },
-    { name: "La Grande Cascade", address: "Bois de Boulogne, allée de Longchamp, 75016 Paris", lat: 48.8601, lng: 2.2225, type: "Française", stars: "1 Star" },
-    { name: "La Halle aux Grains", address: "Bourse de Commerce, 2 rue Viarmes, 75001 Paris", lat: 48.8624, lng: 2.3401, type: "Française", stars: null },
-    { name: "La Maison du Caviar", address: "21 rue Quentin Bauchart, 75008 Paris", lat: 48.8675, lng: 2.3015, type: "Russe", stars: null },
-    { name: "La Mercerie", address: "9 cours Saint-Louis, 13001 Marseille", lat: 43.2987, lng: 5.3787, type: "Française", stars: null },
-    { name: "La Môme Plage", address: "44 boulevard de la Croisette, 06400 Cannes", lat: 43.5512, lng: 7.0197, type: "Fusion", stars: null },
-    { name: "La Pagode de Cos", address: "42 avenue Gabriel, 75008 Paris", lat: 48.8690, lng: 2.3164, type: "Française", stars: null },
-    { name: "La Plage Parisienne", address: "200 port Javel Haut, 75015 Paris", lat: 48.8475, lng: 2.2743, type: "Française", stars: null },
-    { name: "La Poule au Pot", address: "9 rue Vauvilliers, 75001 Paris", lat: 48.8624, lng: 2.3401, type: "Française", stars: "1 Star" },
-    { name: "La Sauvageonne Mègeve", address: "170 route Edmond de Rothschild, 74120 Megève", lat: 45.8570, lng: 6.6177, type: "Française", stars: null },
-    { name: "La Société", address: "4 place Saint Germain des Prés, 75006 Paris", lat: 48.8533, lng: 2.3324, type: "Française", stars: null },
-    { name: "La Suite Girafe", address: "1 place du Trocadéro et 11 Novembre, 75116 Paris", lat: 48.8624, lng: 2.2882, type: "Française", stars: null },
-    { name: "La Table de l'Alpaga", address: "68 allée des Marmousets, 74120 Megève", lat: 45.8570, lng: 6.6177, type: "Française", stars: "1 Star" },
-    { name: "La Tour d'Argent", address: "15 quai Tournelle, 75005 Paris", lat: 48.8497, lng: 2.3584, type: "Française", stars: "1 Star" },
-    { name: "Langosteria", address: "8 quai du Louvre, 75001 Paris", lat: 48.8612, lng: 2.3401, type: "Italienne", stars: null },
-    { name: "Lasserre", address: "17 avenue Franklin Roosevelt, 75008 Paris", lat: 48.8657, lng: 2.3115, type: "Française", stars: "1 Star" },
-    { name: "Le 1947 à Cheval Blanc", address: "Le Jardin Alpin Courchevel 1850, 73120 Courchevel", lat: 45.4116, lng: 6.6347, type: "Française", stars: "3 Stars" },
-    { name: "Le Bar des Près", address: "25 rue du Dragon, 75006 Paris", lat: 48.8528, lng: 2.3304, type: "Japonaise", stars: null },
-    { name: "Le Bar Long", address: "37 avenue Hoche, 75008 Paris", lat: 48.8756, lng: 2.3015, type: "Française", stars: null },
-    { name: "Le Beef Bar au Coucou", address: "464 route du Belvédère, Les Allues, 73550 Meribel", lat: 45.3941, lng: 6.5658, type: "Steakhouse", stars: null },
-    { name: "Ressources", address: "126 rue Fondaudège, 33000 Bordeaux", lat: 44.8488, lng: -0.5802, type: "Française", stars: "1 Star", rating: 4.7 },
-    { name: "Regain", address: "3 rue d'Algérie, 69001 Lyon", lat: 45.7667, lng: 4.8329, type: "Française", stars: null, rating: 4.8 },
+// Load restaurant data
+fetch('./data/restaurants.json')
+    .then(response => response.json())
+    .then(data => {
+        restaurants = data;
+        initializeApp();
+    })
+    .catch(error => {
+        console.error('Error loading restaurant data:', error);
+        restaurants = []; // Fallback to empty array
+    });
 
-
-];
 // Icons
 const ICONS = {
-    star: '<svg class="icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>',
+    star: '<svg class="icon" viewBox="0 0 22.0527 22.1191"><path d="M4.16109 20.5469C4.56149 20.8594 5.0693 20.752 5.67477 20.3125L10.8408 16.5137L16.0166 20.3125C16.622 20.752 17.1201 20.8594 17.5302 20.5469C17.9306 20.2441 18.0185 19.7461 17.7744 19.0332L15.7334 12.959L20.9482 9.20898C21.5537 8.7793 21.7978 8.33008 21.6416 7.8418C21.4853 7.37305 21.0263 7.14844 20.2744 7.14844L13.8779 7.14844L11.9345 1.08398C11.7002 0.361328 11.3486 0 10.8408 0C10.3427 0 9.99117 0.361328 9.7568 1.08398L7.81344 7.14844L1.41695 7.14844C0.665001 7.14844 0.206017 7.37305 0.0497668 7.8418C-0.116249 8.33008 0.137657 8.7793 0.743126 9.20898L5.95797 12.959L3.91695 19.0332C3.67281 19.7461 3.7607 20.2441 4.16109 20.5469Z"/></svg>',
     map: '<svg class="icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>',
     trip: '<svg class="icon" viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>',
     globe: '<svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>',
@@ -157,68 +38,157 @@ L.control.zoom({
     position: 'bottomright'
 }).addTo(map);
 
+// Global variables
 const markers = {};
 const listContainer = document.getElementById('restaurant-list');
 const searchInput = document.getElementById('restaurant-search');
+const clearButton = document.getElementById('clear-search');
+const cuisineFilter = document.getElementById('cuisine-filter');
+const starsFilter = document.getElementById('stars-filter');
+const resultCount = document.getElementById('result-count');
+const clearAllButton = document.getElementById('clear-all-filters');
 const featureGroup = L.featureGroup();
+const activeFilters = {
+    cuisine: '',
+    stars: ''
+};
 
+function isMobileLayout() {
+    return window.matchMedia('(max-width: 768px)').matches;
+}
+
+function fitMapToMarkerGroup(group) {
+    if (!group || !group.getLayers().length) return;
+
+    const options = isMobileLayout()
+        ? {
+            paddingTopLeft: [20, 170],
+            paddingBottomRight: [20, Math.round(window.innerHeight * 0.46)]
+        }
+        : { padding: [36, 36] };
+
+    map.fitBounds(group.getBounds().pad(0.08), options);
+}
+
+function createRestaurantIcon(isStarred) {
+    const markerClass = isStarred ? 'marker-circle starred' : 'marker-circle';
+    const iconPath = isStarred
+        ? 'M4.16109 20.5469C4.56149 20.8594 5.0693 20.752 5.67477 20.3125L10.8408 16.5137L16.0166 20.3125C16.622 20.752 17.1201 20.8594 17.5302 20.5469C17.9306 20.2441 18.0185 19.7461 17.7744 19.0332L15.7334 12.959L20.9482 9.20898C21.5537 8.7793 21.7978 8.33008 21.6416 7.8418C21.4853 7.37305 21.0263 7.14844 20.2744 7.14844L13.8779 7.14844L11.9345 1.08398C11.7002 0.361328 11.3486 0 10.8408 0C10.3427 0 9.99117 0.361328 9.7568 1.08398L7.81344 7.14844L1.41695 7.14844C0.665001 7.14844 0.206017 7.37305 0.0497668 7.8418C-0.116249 8.33008 0.137657 8.7793 0.743126 9.20898L5.95797 12.959L3.91695 19.0332C3.67281 19.7461 3.7607 20.2441 4.16109 20.5469Z'
+        : 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z';
+    const viewBox = isStarred ? '0 0 22.0527 22.1191' : '0 0 24 24';
+
+    return L.divIcon({
+        className: 'custom-marker',
+        html: `<div class="${markerClass}"><svg viewBox="${viewBox}" width="16" height="16" fill="currentColor"><path d="${iconPath}"/></svg></div>`,
+        iconSize: [34, 34],
+        iconAnchor: [17, 17],
+        popupAnchor: [0, -22]
+    });
+}
+
+function normalizeSearch(value) {
+    return String(value || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .trim();
+}
+
+function getStarsLabel(stars) {
+    if (!stars) return 'no stars sans etoile';
+    return `${stars} michelin etoile starred distinction`;
+}
+
+function formatStars(stars) {
+    if (stars === '1 Star') return '1 étoile';
+    if (stars === '2 Stars') return '2 étoiles';
+    if (stars === '3 Stars') return '3 étoiles';
+    return stars;
+}
+
+function getRestaurantSearchText(restaurant) {
+    return normalizeSearch([
+        restaurant.name,
+        restaurant.address,
+        restaurant.type,
+        getStarsLabel(restaurant.stars),
+        restaurant.rating
+    ].filter(Boolean).join(' '));
+}
+
+function hasActiveFilters() {
+    return Boolean(searchInput.value.trim() || activeFilters.cuisine || activeFilters.stars);
+}
+
+function updateResultMeta(count) {
+    if (resultCount) {
+        resultCount.textContent = `${count} ${count === 1 ? 'restaurant' : 'restaurants'}`;
+    }
+
+    if (clearAllButton) {
+        clearAllButton.classList.toggle('visible', hasActiveFilters());
+    }
+}
+
+function updateChipState(type, value) {
+    const group = type === 'cuisine' ? cuisineFilter : starsFilter;
+    if (!group) return;
+
+    group.querySelectorAll('.filter-chip').forEach(chip => {
+        const isActive = chip.dataset.filterValue === value;
+        chip.classList.toggle('active', isActive);
+        chip.setAttribute('aria-pressed', String(isActive));
+    });
+}
+
+function setFilter(type, value) {
+    activeFilters[type] = value;
+    updateChipState(type, value);
+    filterList(normalizeSearch(searchInput.value));
+}
+
+// Render restaurant list
 function renderList(items) {
-    listContainer.innerHTML = '';
     if (!items.length) {
         listContainer.innerHTML = '<div class="empty-state">Aucun restaurant trouvé</div>';
         return;
     }
+
+    const fragment = document.createDocumentFragment();
+
     items.forEach(restaurant => {
         const card = document.createElement('div');
-        card.className = 'restaurant-card';
+        card.className = restaurant.stars ? 'restaurant-card starred' : 'restaurant-card';
 
-        // Badges HTML (Michelin Stars & Rating)
         const starHtml = restaurant.stars
-            ? `<div class="stars-badge">${ICONS.star} ${restaurant.stars}</div>`
+            ? `<div class="stars-badge">${ICONS.star} ${formatStars(restaurant.stars)}</div>`
             : '';
 
         const ratingHtml = restaurant.rating
-            ? `<div class="rating-badge"><span class="rating-star">★</span> ${restaurant.rating}</div>`
+            ? `<div class="rating-badge">${ICONS.star} ${restaurant.rating}</div>`
             : '';
-
-        // Dynamic links - improved Google Maps integration
-        const mapsSearchQuery = encodeURIComponent(`${restaurant.name}, ${restaurant.address}`);
-        const websiteUrl = `https://www.google.com/maps/search/?api=1&query=${mapsSearchQuery}`;
-        const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapsSearchQuery}`;
 
         card.innerHTML = `
             <div class="card-header">
-                <div>
+                <div class="card-title-block">
                     <h3>${restaurant.name}</h3>
-                    <div style="display: flex; gap: 8px; margin-top: 4px;">
-                        ${starHtml}
-                        ${ratingHtml}
-                    </div>
+                    <div class="cuisine-row">${restaurant.type}</div>
+                </div>
+                <div class="card-badges">
+                    ${ratingHtml}
+                    ${starHtml}
                 </div>
             </div>
             <div class="location-row">
                 ${ICONS.map}
                 <span>${restaurant.address}</span>
             </div>
-            <div class="card-footer">
-                <span class="tag">${restaurant.type}</span>
-                <div class="card-actions">
-                    <a href="${directionsUrl}" target="_blank" class="action-link secondary" onclick="event.stopPropagation()" title="Itinéraire">
-                        ${ICONS.trip}
-                    </a>
-                    <a href="${websiteUrl}" target="_blank" class="action-link primary" onclick="event.stopPropagation()" title="Voir le Restaurant">
-                        ${ICONS.globe} Voir le Restaurant
-                    </a>
-                </div>
-            </div>
         `;
 
         card.addEventListener('click', () => {
             const marker = markers[restaurant.name];
             if (marker) {
-                map.flyTo([restaurant.lat, restaurant.lng], 16, {
-                    duration: 1.2
-                });
+                map.flyTo([restaurant.lat, restaurant.lng], 16, { duration: 1.2 });
                 marker.openPopup();
 
                 document.querySelectorAll('.restaurant-card').forEach(c => c.classList.remove('active'));
@@ -227,43 +197,35 @@ function renderList(items) {
         });
 
         restaurant.element = card;
-        listContainer.appendChild(card);
+        fragment.appendChild(card);
     });
+
+    listContainer.innerHTML = '';
+    listContainer.appendChild(fragment);
 }
 
+// Initialize map markers
 function initMarkers() {
-    featureGroup.clearLayers();
-    restaurants.forEach(restaurant => {
-        const marker = L.marker([restaurant.lat, restaurant.lng]);
+    if (!restaurants.length) return;
 
-        const mapsSearchQuery = encodeURIComponent(`${restaurant.name}, ${restaurant.address}`);
-        const websiteUrl = `https://www.google.com/maps/search/?api=1&query=${mapsSearchQuery}`;
-        const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapsSearchQuery}`;
+    featureGroup.clearLayers();
+
+    restaurants.forEach(restaurant => {
+        const marker = L.marker([restaurant.lat, restaurant.lng], {
+            icon: createRestaurantIcon(Boolean(restaurant.stars))
+        });
 
         const popupContent = `
             <div class="custom-popup">
                 <h3>${restaurant.name}</h3>
-                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
-                    ${restaurant.stars ? `<div class="stars-badge" style="padding: 2px 6px; font-size: 0.7rem;">${ICONS.star} ${restaurant.stars}</div>` : ''}
-                    ${restaurant.rating ? `<div class="rating-badge" style="padding: 2px 6px; font-size: 0.7rem;"><span class="rating-star">★</span> ${restaurant.rating}</div>` : ''}
-                </div>
-                <p>${ICONS.map} ${restaurant.address}</p>
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; gap:10px;">
-                    <div class="popup-tag">${restaurant.type}</div>
-                    <div style="display:flex; gap:8px;">
-                        <a href="${directionsUrl}" target="_blank" class="popup-icon-link" title="Itinéraire">
-                            ${ICONS.trip}
-                        </a>
-                        <a href="${websiteUrl}" target="_blank" class="popup-icon-link" title="Site Web">
-                            ${ICONS.globe}
-                        </a>
-                    </div>
-                </div>
+                <span class="popup-type">${restaurant.type}</span>
             </div>
         `;
 
-        marker.bindPopup(popupContent);
-
+        marker.bindPopup(popupContent, {
+            closeButton: false,
+            className: 'minimal-popup'
+        });
         marker.addTo(map);
         marker.addTo(featureGroup);
 
@@ -280,33 +242,84 @@ function initMarkers() {
 
     // Fit map to show all markers
     if (restaurants.length > 0) {
-        map.fitBounds(featureGroup.getBounds().pad(0.1));
+        fitMapToMarkerGroup(featureGroup);
     }
 }
 
-// Filters and Search Functionality
-const clearButton = document.getElementById('clear-search');
-const cuisineFilter = document.getElementById('cuisine-filter');
-const starsFilter = document.getElementById('stars-filter');
+// Generate LocalBusiness structured data for top restaurants
+function generateLocalBusinessSchema() {
+    // Limit to 10 restaurants to avoid overwhelming the page
+    const topRestaurants = restaurants.slice(0, 10);
 
-// Initialize filters
-function initializeFilters() {
-    // Extract unique cuisine types
-    const cuisineTypes = [...new Set(restaurants.map(r => r.type))].sort();
-    cuisineTypes.forEach(type => {
-        const option = document.createElement('option');
-        option.value = type;
-        option.textContent = type;
-        cuisineFilter.appendChild(option);
+    topRestaurants.forEach(restaurant => {
+        const schema = {
+            "@context": "https://schema.org",
+            "@type": "Restaurant",
+            "name": restaurant.name,
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": restaurant.address.split(',')[0],
+                "addressLocality": restaurant.address.split(',').pop().trim(),
+                "addressCountry": "FR"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": restaurant.lat,
+                "longitude": restaurant.lng
+            },
+            "servesCuisine": restaurant.type
+        };
+
+        // Add rating if available
+        if (restaurant.rating) {
+            schema.aggregateRating = {
+                "@type": "AggregateRating",
+                "ratingValue": restaurant.rating,
+                "bestRating": "5"
+            };
+        }
+
+        // Inject into document head
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(schema);
+        document.head.appendChild(script);
     });
 }
 
-function getActiveFilters() {
-    const selectedCuisine = cuisineFilter.value;
-    const selectedStars = starsFilter.value;
-    return { selectedCuisine, selectedStars };
+// Initialize filters
+function initializeFilters() {
+    if (!restaurants.length) return;
+
+    // Extract unique cuisine types
+    const cuisineTypes = [...new Set(restaurants.map(r => r.type))].sort();
+    const fragment = document.createDocumentFragment();
+
+    cuisineTypes.forEach(type => {
+        const button = document.createElement('button');
+        button.className = 'filter-chip';
+        button.type = 'button';
+        button.dataset.filterType = 'cuisine';
+        button.dataset.filterValue = type;
+        button.textContent = type;
+        button.setAttribute('aria-pressed', 'false');
+        fragment.appendChild(button);
+    });
+
+    cuisineFilter.appendChild(fragment);
+    updateChipState('cuisine', activeFilters.cuisine);
+    updateChipState('stars', activeFilters.stars);
 }
 
+// Get active filters
+function getActiveFilters() {
+    return {
+        selectedCuisine: activeFilters.cuisine,
+        selectedStars: activeFilters.stars
+    };
+}
+
+// Filter functionality
 function filterList(term) {
     const { selectedCuisine, selectedStars } = getActiveFilters();
 
@@ -318,21 +331,20 @@ function filterList(term) {
     });
 
     const visibleRestaurants = [];
+    const normalizedTerm = normalizeSearch(term);
 
     restaurants.forEach(restaurant => {
         // Text search
-        const matchesSearch = !term ||
-            restaurant.name.toLowerCase().includes(term) ||
-            restaurant.address.toLowerCase().includes(term);
+        const matchesSearch = !normalizedTerm || getRestaurantSearchText(restaurant).includes(normalizedTerm);
 
         // Cuisine filter
-        const matchesCuisine = !selectedCuisine ||
-            selectedCuisine === restaurant.type;
+        const matchesCuisine = !selectedCuisine || selectedCuisine === restaurant.type;
 
         // Stars filter
         const matchesStars = !selectedStars ||
-            selectedStars === (restaurant.stars === null ? 'null' : restaurant.stars);
-
+            (selectedStars === 'starred' && Boolean(restaurant.stars)) ||
+            (selectedStars === 'null' && !restaurant.stars) ||
+            selectedStars === restaurant.stars;
 
         const visible = matchesSearch && matchesCuisine && matchesStars;
 
@@ -362,11 +374,13 @@ function filterList(term) {
         }
         // Fit bounds to visible results
         const group = L.featureGroup(visibleRestaurants);
-        map.fitBounds(group.getBounds().pad(0.1));
+        fitMapToMarkerGroup(group);
     }
+
+    updateResultMeta(visibleRestaurants.length);
 }
 
-// Optimization: Debounce function
+// Debounce function for performance
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -379,100 +393,56 @@ function debounce(func, wait) {
     };
 }
 
+// Search handler
 const handleSearch = debounce((e) => {
-    const term = e.target.value.toLowerCase();
-
-    // Toggle clear button
+    const term = normalizeSearch(e.target.value);
     clearButton.style.display = term.length > 0 ? 'block' : 'none';
-
     filterList(term);
-}, 150); // 150ms delay
+}, 150);
 
-searchInput.addEventListener('input', handleSearch);
+// Event listeners
+function initEventListeners() {
+    // Search functionality
+    searchInput.addEventListener('input', handleSearch);
 
-clearButton.addEventListener('click', () => {
-    searchInput.value = '';
-    clearButton.style.display = 'none';
-    filterList('');
-    searchInput.focus();
-});
+    clearButton.addEventListener('click', () => {
+        searchInput.value = '';
+        clearButton.style.display = 'none';
+        filterList(normalizeSearch(searchInput.value));
+        searchInput.focus();
+    });
 
+    document.querySelectorAll('.chip-row').forEach(group => {
+        group.addEventListener('click', (event) => {
+            const chip = event.target.closest('.filter-chip');
+            if (!chip) return;
 
-// Mobile Toggle Logic
-const toggleBtn = document.getElementById('toggle-map-btn');
-const container = document.querySelector('.container');
-let isMapVisible = false;
+            setFilter(chip.dataset.filterType, chip.dataset.filterValue);
+        });
+    });
 
-if (toggleBtn) {
-    toggleBtn.addEventListener('click', () => {
-        isMapVisible = !isMapVisible;
+    clearAllButton.addEventListener('click', () => {
+        searchInput.value = '';
+        clearButton.style.display = 'none';
+        activeFilters.cuisine = '';
+        activeFilters.stars = '';
+        updateChipState('cuisine', '');
+        updateChipState('stars', '');
+        filterList('');
+    });
 
-        if (isMapVisible) {
-            container.classList.add('show-map');
-            toggleBtn.innerHTML = `
-                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
-                </svg>
-                Liste
-            `;
-            // Map needs a resize event to render correctly when revealing from hidden/zero-size
-            setTimeout(() => { map.invalidateSize(); }, 300);
-        } else {
-            container.classList.remove('show-map');
-            toggleBtn.innerHTML = `
-                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/>
-                </svg>
-                Carte
-            `;
-        }
+    // Map resize on load
+    window.addEventListener('load', () => {
+        map.invalidateSize();
     });
 }
 
-// Ensure map is properly sized on load
-window.addEventListener('load', () => {
-    map.invalidateSize();
-});
-
-// Filter event listeners
-cuisineFilter.addEventListener('change', () => {
-    const term = searchInput.value.toLowerCase();
-    filterList(term);
-});
-
-starsFilter.addEventListener('change', () => {
-    const term = searchInput.value.toLowerCase();
-    filterList(term);
-});
-
-// Initial Render
-initializeFilters();
-renderList(restaurants);
-initMarkers();
-
-// Modal Logic
-const modal = document.getElementById('welcome-modal');
-const closeModalBtn = document.getElementById('close-modal');
-const startBtn = document.getElementById('start-btn');
-const infoBtn = document.getElementById('info-btn');
-
-function openModal() {
-    modal.classList.add('active');
-}
-
-function closeModal() {
-    modal.classList.remove('active');
-}
-
-if (modal) {
-    if (infoBtn) {
-        infoBtn.addEventListener('click', openModal);
-    }
-    closeModalBtn.addEventListener('click', closeModal);
-    startBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
+// Initialize the application
+function initializeApp() {
+    initializeFilters();
+    renderList(restaurants);
+    initMarkers();
+    initEventListeners();
+    updateResultMeta(restaurants.length);
+    generateLocalBusinessSchema();
 }

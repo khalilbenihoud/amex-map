@@ -71,7 +71,7 @@ geocoded.forEach(g => {
 });
 
 // Generate JS string
-console.log("// --- NEW ADDITIONS FROM AMEX PDF ---");
+console.log("// --- NEW ADDITIONS FROM SOURCE PDF ---");
 finalToAdd.forEach(r => {
     console.log(`    { name: "${r.name}", address: "${r.address}", lat: ${r.lat}, lng: ${r.lng}, type: "${r.type}", stars: "${r.stars}" },`);
 });

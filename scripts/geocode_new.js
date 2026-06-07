@@ -23,7 +23,7 @@ function geocode(address) {
     return new Promise((resolve) => {
         const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1`;
         const options = {
-            headers: { 'User-Agent': 'AmexDiningMap/1.0 (Student Project)' }
+            headers: { 'User-Agent': 'RestaurantGuide/1.0 (Student Project)' }
         };
 
         https.get(url, options, (res) => {
