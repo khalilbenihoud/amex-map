@@ -1,4 +1,4 @@
-# Amex Dining Map
+# Guide des Restaurants
 
 Ce projet a été restructuré pour être plus simple et optimisé pour la mise en ligne.
 

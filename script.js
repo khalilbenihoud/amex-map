@@ -45,8 +45,107 @@ const searchInput = document.getElementById('restaurant-search');
 const clearButton = document.getElementById('clear-search');
 const cuisineFilter = document.getElementById('cuisine-filter');
 const starsFilter = document.getElementById('stars-filter');
-const programFilter = document.getElementById('program-filter');
+const resultCount = document.getElementById('result-count');
+const clearAllButton = document.getElementById('clear-all-filters');
 const featureGroup = L.featureGroup();
+const activeFilters = {
+    cuisine: '',
+    stars: ''
+};
+
+function isMobileLayout() {
+    return window.matchMedia('(max-width: 768px)').matches;
+}
+
+function fitMapToMarkerGroup(group) {
+    if (!group || !group.getLayers().length) return;
+
+    const options = isMobileLayout()
+        ? {
+            paddingTopLeft: [20, 170],
+            paddingBottomRight: [20, Math.round(window.innerHeight * 0.46)]
+        }
+        : { padding: [36, 36] };
+
+    map.fitBounds(group.getBounds().pad(0.08), options);
+}
+
+function createRestaurantIcon(isStarred) {
+    const markerClass = isStarred ? 'marker-circle starred' : 'marker-circle';
+    const iconPath = isStarred
+        ? 'M4.16109 20.5469C4.56149 20.8594 5.0693 20.752 5.67477 20.3125L10.8408 16.5137L16.0166 20.3125C16.622 20.752 17.1201 20.8594 17.5302 20.5469C17.9306 20.2441 18.0185 19.7461 17.7744 19.0332L15.7334 12.959L20.9482 9.20898C21.5537 8.7793 21.7978 8.33008 21.6416 7.8418C21.4853 7.37305 21.0263 7.14844 20.2744 7.14844L13.8779 7.14844L11.9345 1.08398C11.7002 0.361328 11.3486 0 10.8408 0C10.3427 0 9.99117 0.361328 9.7568 1.08398L7.81344 7.14844L1.41695 7.14844C0.665001 7.14844 0.206017 7.37305 0.0497668 7.8418C-0.116249 8.33008 0.137657 8.7793 0.743126 9.20898L5.95797 12.959L3.91695 19.0332C3.67281 19.7461 3.7607 20.2441 4.16109 20.5469Z'
+        : 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z';
+    const viewBox = isStarred ? '0 0 22.0527 22.1191' : '0 0 24 24';
+
+    return L.divIcon({
+        className: 'custom-marker',
+        html: `<div class="${markerClass}"><svg viewBox="${viewBox}" width="16" height="16" fill="currentColor"><path d="${iconPath}"/></svg></div>`,
+        iconSize: [34, 34],
+        iconAnchor: [17, 17],
+        popupAnchor: [0, -22]
+    });
+}
+
+function normalizeSearch(value) {
+    return String(value || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .trim();
+}
+
+function getStarsLabel(stars) {
+    if (!stars) return 'no stars sans etoile';
+    return `${stars} michelin etoile starred distinction`;
+}
+
+function formatStars(stars) {
+    if (stars === '1 Star') return '1 étoile';
+    if (stars === '2 Stars') return '2 étoiles';
+    if (stars === '3 Stars') return '3 étoiles';
+    return stars;
+}
+
+function getRestaurantSearchText(restaurant) {
+    return normalizeSearch([
+        restaurant.name,
+        restaurant.address,
+        restaurant.type,
+        getStarsLabel(restaurant.stars),
+        restaurant.rating
+    ].filter(Boolean).join(' '));
+}
+
+function hasActiveFilters() {
+    return Boolean(searchInput.value.trim() || activeFilters.cuisine || activeFilters.stars);
+}
+
+function updateResultMeta(count) {
+    if (resultCount) {
+        resultCount.textContent = `${count} ${count === 1 ? 'restaurant' : 'restaurants'}`;
+    }
+
+    if (clearAllButton) {
+        clearAllButton.classList.toggle('visible', hasActiveFilters());
+    }
+}
+
+function updateChipState(type, value) {
+    const group = type === 'cuisine' ? cuisineFilter : starsFilter;
+    if (!group) return;
+
+    group.querySelectorAll('.filter-chip').forEach(chip => {
+        const isActive = chip.dataset.filterValue === value;
+        chip.classList.toggle('active', isActive);
+        chip.setAttribute('aria-pressed', String(isActive));
+    });
+}
+
+function setFilter(type, value) {
+    activeFilters[type] = value;
+    updateChipState(type, value);
+    filterList(normalizeSearch(searchInput.value));
+}
 
 // Render restaurant list
 function renderList(items) {
@@ -59,43 +158,30 @@ function renderList(items) {
 
     items.forEach(restaurant => {
         const card = document.createElement('div');
-        card.className = 'restaurant-card';
-
-        // Badges HTML
-        const programClass = restaurant.program === 'Dining Collection' ? 'dining-collection' : 'credit-dining';
-        const programLabel = restaurant.program === 'Dining Collection' ? 'Collection' : 'Crédit';
-        const programHtml = `<span class="program-badge ${programClass}">${programLabel}</span>`;
+        card.className = restaurant.stars ? 'restaurant-card starred' : 'restaurant-card';
 
         const starHtml = restaurant.stars
-            ? `<div class="stars-badge">${ICONS.star} ${restaurant.stars}</div>`
+            ? `<div class="stars-badge">${ICONS.star} ${formatStars(restaurant.stars)}</div>`
             : '';
 
         const ratingHtml = restaurant.rating
             ? `<div class="rating-badge">${ICONS.star} ${restaurant.rating}</div>`
             : '';
 
-        // Google Maps links
-        const mapsSearchQuery = encodeURIComponent(`${restaurant.name}, ${restaurant.address}`);
-        const websiteUrl = `https://www.google.com/maps/search/?api=1&query=${mapsSearchQuery}`;
-
         card.innerHTML = `
             <div class="card-header">
-                <h3>${restaurant.name}</h3>
+                <div class="card-title-block">
+                    <h3>${restaurant.name}</h3>
+                    <div class="cuisine-row">${restaurant.type}</div>
+                </div>
                 <div class="card-badges">
-                    ${programHtml}
-                    ${starHtml}
                     ${ratingHtml}
+                    ${starHtml}
                 </div>
             </div>
             <div class="location-row">
                 ${ICONS.map}
                 <span>${restaurant.address}</span>
-            </div>
-            <div class="card-footer">
-                <span class="tag">${restaurant.type}</span>
-                <a href="${websiteUrl}" target="_blank" class="action-link primary" onclick="event.stopPropagation()" title="Voir le Restaurant">
-                    Voir le Restaurant →
-                </a>
             </div>
         `;
 
@@ -124,16 +210,10 @@ function initMarkers() {
 
     featureGroup.clearLayers();
 
-    const customIcon = L.divIcon({
-        className: 'custom-marker',
-        html: '<div class="marker-circle"><svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>',
-        iconSize: [40, 40],
-        iconAnchor: [20, 20],
-        popupAnchor: [0, -24]
-    });
-
     restaurants.forEach(restaurant => {
-        const marker = L.marker([restaurant.lat, restaurant.lng], { icon: customIcon });
+        const marker = L.marker([restaurant.lat, restaurant.lng], {
+            icon: createRestaurantIcon(Boolean(restaurant.stars))
+        });
 
         const popupContent = `
             <div class="custom-popup">
@@ -162,7 +242,7 @@ function initMarkers() {
 
     // Fit map to show all markers
     if (restaurants.length > 0) {
-        map.fitBounds(featureGroup.getBounds().pad(0.1));
+        fitMapToMarkerGroup(featureGroup);
     }
 }
 
@@ -187,8 +267,7 @@ function generateLocalBusinessSchema() {
                 "latitude": restaurant.lat,
                 "longitude": restaurant.lng
             },
-            "servesCuisine": restaurant.type,
-            "paymentAccepted": "American Express"
+            "servesCuisine": restaurant.type
         };
 
         // Add rating if available
@@ -212,35 +291,37 @@ function generateLocalBusinessSchema() {
 function initializeFilters() {
     if (!restaurants.length) return;
 
-    // Clear existing options
-    cuisineFilter.innerHTML = '<option value="">Toutes</option>';
-
     // Extract unique cuisine types
     const cuisineTypes = [...new Set(restaurants.map(r => r.type))].sort();
     const fragment = document.createDocumentFragment();
 
     cuisineTypes.forEach(type => {
-        const option = document.createElement('option');
-        option.value = type;
-        option.textContent = type;
-        fragment.appendChild(option);
+        const button = document.createElement('button');
+        button.className = 'filter-chip';
+        button.type = 'button';
+        button.dataset.filterType = 'cuisine';
+        button.dataset.filterValue = type;
+        button.textContent = type;
+        button.setAttribute('aria-pressed', 'false');
+        fragment.appendChild(button);
     });
 
     cuisineFilter.appendChild(fragment);
+    updateChipState('cuisine', activeFilters.cuisine);
+    updateChipState('stars', activeFilters.stars);
 }
 
 // Get active filters
 function getActiveFilters() {
     return {
-        selectedCuisine: cuisineFilter.value,
-        selectedStars: starsFilter.value,
-        selectedProgram: programFilter.value
+        selectedCuisine: activeFilters.cuisine,
+        selectedStars: activeFilters.stars
     };
 }
 
 // Filter functionality
 function filterList(term) {
-    const { selectedCuisine, selectedStars, selectedProgram } = getActiveFilters();
+    const { selectedCuisine, selectedStars } = getActiveFilters();
 
     // Clear existing markers from map
     map.eachLayer((layer) => {
@@ -250,24 +331,22 @@ function filterList(term) {
     });
 
     const visibleRestaurants = [];
+    const normalizedTerm = normalizeSearch(term);
 
     restaurants.forEach(restaurant => {
         // Text search
-        const matchesSearch = !term ||
-            restaurant.name.toLowerCase().includes(term) ||
-            restaurant.address.toLowerCase().includes(term);
+        const matchesSearch = !normalizedTerm || getRestaurantSearchText(restaurant).includes(normalizedTerm);
 
         // Cuisine filter
         const matchesCuisine = !selectedCuisine || selectedCuisine === restaurant.type;
 
         // Stars filter
         const matchesStars = !selectedStars ||
-            selectedStars === (restaurant.stars === null ? 'null' : restaurant.stars);
+            (selectedStars === 'starred' && Boolean(restaurant.stars)) ||
+            (selectedStars === 'null' && !restaurant.stars) ||
+            selectedStars === restaurant.stars;
 
-        // Program filter
-        const matchesProgram = !selectedProgram || selectedProgram === restaurant.program;
-
-        const visible = matchesSearch && matchesCuisine && matchesStars && matchesProgram;
+        const visible = matchesSearch && matchesCuisine && matchesStars;
 
         if (restaurant.element) {
             restaurant.element.style.display = visible ? 'block' : 'none';
@@ -295,8 +374,10 @@ function filterList(term) {
         }
         // Fit bounds to visible results
         const group = L.featureGroup(visibleRestaurants);
-        map.fitBounds(group.getBounds().pad(0.1));
+        fitMapToMarkerGroup(group);
     }
+
+    updateResultMeta(visibleRestaurants.length);
 }
 
 // Debounce function for performance
@@ -314,7 +395,7 @@ function debounce(func, wait) {
 
 // Search handler
 const handleSearch = debounce((e) => {
-    const term = e.target.value.toLowerCase();
+    const term = normalizeSearch(e.target.value);
     clearButton.style.display = term.length > 0 ? 'block' : 'none';
     filterList(term);
 }, 150);
@@ -327,77 +408,33 @@ function initEventListeners() {
     clearButton.addEventListener('click', () => {
         searchInput.value = '';
         clearButton.style.display = 'none';
-        filterList('');
+        filterList(normalizeSearch(searchInput.value));
         searchInput.focus();
     });
 
-    // Filter listeners
-    programFilter.addEventListener('change', () => {
-        const term = searchInput.value.toLowerCase();
-        filterList(term);
-    });
+    document.querySelectorAll('.chip-row').forEach(group => {
+        group.addEventListener('click', (event) => {
+            const chip = event.target.closest('.filter-chip');
+            if (!chip) return;
 
-    cuisineFilter.addEventListener('change', () => {
-        const term = searchInput.value.toLowerCase();
-        filterList(term);
-    });
-
-    starsFilter.addEventListener('change', () => {
-        const term = searchInput.value.toLowerCase();
-        filterList(term);
-    });
-
-    // Mobile toggle
-    const toggleBtn = document.getElementById('toggle-map-btn');
-    const container = document.querySelector('.container');
-    let isMapVisible = false;
-
-    if (toggleBtn) {
-        toggleBtn.addEventListener('click', () => {
-            isMapVisible = !isMapVisible;
-
-            if (isMapVisible) {
-                container.classList.add('show-map');
-                toggleBtn.innerHTML = `${ICONS.list} Liste`;
-                setTimeout(() => { map.invalidateSize(); }, 300);
-            } else {
-                container.classList.remove('show-map');
-                toggleBtn.innerHTML = `${ICONS.mapAlt} Carte`;
-            }
+            setFilter(chip.dataset.filterType, chip.dataset.filterValue);
         });
-    }
+    });
+
+    clearAllButton.addEventListener('click', () => {
+        searchInput.value = '';
+        clearButton.style.display = 'none';
+        activeFilters.cuisine = '';
+        activeFilters.stars = '';
+        updateChipState('cuisine', '');
+        updateChipState('stars', '');
+        filterList('');
+    });
 
     // Map resize on load
     window.addEventListener('load', () => {
         map.invalidateSize();
     });
-
-    // Modal functionality
-    const modal = document.getElementById('welcome-modal');
-    const closeModalBtn = document.getElementById('close-modal');
-    const startBtn = document.getElementById('start-btn');
-    const infoBtn = document.getElementById('info-btn');
-
-    function openModal() {
-        modal.classList.add('active');
-    }
-
-    function closeModal() {
-        modal.classList.remove('active');
-    }
-
-    if (modal) {
-        if (infoBtn) {
-            infoBtn.addEventListener('click', openModal);
-        }
-        closeModalBtn.addEventListener('click', closeModal);
-        startBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-    }
 }
 
 // Initialize the application
@@ -406,5 +443,6 @@ function initializeApp() {
     renderList(restaurants);
     initMarkers();
     initEventListeners();
+    updateResultMeta(restaurants.length);
     generateLocalBusinessSchema();
 }
