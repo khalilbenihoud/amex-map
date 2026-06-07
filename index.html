@@ -13,12 +13,12 @@
 
         gtag('config', 'G-P9009XVHHD');
     </script>
-    <title>Guide des Restaurants - Tables en France</title>
+    <title>Dining Map - Tables en France</title>
     <meta name="description"
-        content="Explorez une carte éditoriale de restaurants en France, avec filtres par cuisine et distinctions.">
+        content="Explorez une carte éditoriale de restaurants en France, avec filtres par cuisine et distinctions. Référence discrète pour les recherches amex dining map.">
     <meta name="keywords"
-        content="restaurants France, carte restaurants, gastronomie, Michelin, guide restaurants">
-    <meta name="author" content="Guide des Restaurants">
+        content="dining map, amex dining map, amex dining, restaurants France, carte restaurants, gastronomie, Michelin, guide restaurants">
+    <meta name="author" content="Dining Map">
     <meta name="robots" content="index, follow">
 
     <!-- Favicon -->
@@ -26,8 +26,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
     <!-- Preload critical resources -->
-    <link rel="preload" href="style.css?v=20260607-fr" as="style">
-    <link rel="preload" href="script.js?v=20260607-fr" as="script">
+    <link rel="preload" href="style.css?v=20260607-dining-map" as="style">
+    <link rel="preload" href="script.js?v=20260607-dining-map" as="script">
     <link rel="preload" href="data/restaurants.json" as="fetch" crossorigin>
 
     <!-- DNS prefetch for external resources -->
@@ -36,7 +36,7 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Guide des Restaurants - Tables en France">
+    <meta property="og:title" content="Dining Map - Tables en France">
     <meta property="og:description"
         content="Carte interactive de restaurants en France, avec filtres par cuisine et distinctions.">
     <meta property="og:image" content="og-image.jpg">
@@ -45,11 +45,11 @@
     <meta property="og:image:alt" content="Carte éditoriale de restaurants en France">
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Guide des Restaurants">
+    <meta property="og:site_name" content="Dining Map">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="Guide des Restaurants - Tables en France">
+    <meta property="twitter:title" content="Dining Map - Tables en France">
     <meta property="twitter:description"
         content="Carte interactive de restaurants en France, avec filtres par cuisine et distinctions.">
     <meta property="twitter:image" content="og-image.jpg">
@@ -59,7 +59,8 @@
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "Guide des Restaurants",
+      "name": "Dining Map",
+      "alternateName": "amex dining map",
       "description": "Carte interactive de restaurants en France.",
       "potentialAction": {
         "@type": "SearchAction",
@@ -75,8 +76,7 @@
       "@context": "https://schema.org",
       "@type": "ItemList",
       "name": "Restaurants en France",
-      "description": "Collection éditoriale de restaurants en France",
-      "numberOfItems": 163
+      "description": "Collection éditoriale de restaurants en France"
     }
     </script>
 
@@ -92,7 +92,7 @@
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
     <!-- Local CSS -->
-    <link rel="stylesheet" href="style.css?v=20260607-fr">
+    <link rel="stylesheet" href="style.css?v=20260607-dining-map">
 </head>
 
 <body>
@@ -101,9 +101,9 @@
             <div class="floating-search-header">
                 <header class="header">
                     <a href="/" class="brand" style="text-decoration: none;">
-                        Guide des Restaurants
+                        Dining Map
                     </a>
-                    <h1 class="title">Tables de France</h1>
+                    <h1 class="title">Dining Map</h1>
                     <div class="header-actions">
                         <p class="subtitle">Sélection éditoriale</p>
                     </div>
@@ -128,19 +128,17 @@
                 <div class="sheet-handle" aria-hidden="true"></div>
 
                 <div id="filters-container" class="filters-container">
-                    <div class="filters-meta">
-                        <span id="result-count" class="result-count">0 restaurant</span>
-                        <button id="clear-all-filters" class="clear-all-filters" type="button">Réinitialiser</button>
-                    </div>
-
                     <div class="filter-section">
-                        <div class="filter-label">Distinction</div>
+                        <div class="filter-heading">
+                        <div class="filter-label">Distinctions</div>
+                            <button id="clear-all-filters" class="clear-all-filters" type="button">Réinitialiser</button>
+                        </div>
                         <div id="stars-filter" class="chip-row" role="group" aria-label="Filtrer par distinction">
                             <button class="filter-chip active" type="button" data-filter-type="stars" data-filter-value="">Toutes</button>
-                            <button class="filter-chip" type="button" data-filter-type="stars" data-filter-value="starred">Michelin</button>
-                            <button class="filter-chip" type="button" data-filter-type="stars" data-filter-value="3 Stars">3 étoiles</button>
-                            <button class="filter-chip" type="button" data-filter-type="stars" data-filter-value="2 Stars">2 étoiles</button>
-                            <button class="filter-chip" type="button" data-filter-type="stars" data-filter-value="1 Star">1 étoile</button>
+                            <button class="filter-chip" type="button" data-filter-type="stars" data-filter-value="starred">Étoilés</button>
+                            <button class="filter-chip" type="button" data-filter-type="stars" data-filter-value="3 Stars">3★</button>
+                            <button class="filter-chip" type="button" data-filter-type="stars" data-filter-value="2 Stars">2★</button>
+                            <button class="filter-chip" type="button" data-filter-type="stars" data-filter-value="1 Star">1★</button>
                             <button class="filter-chip" type="button" data-filter-type="stars" data-filter-value="null">Sans étoile</button>
                         </div>
                     </div>
@@ -148,7 +146,7 @@
                     <div class="filter-section">
                         <div class="filter-label">Cuisine</div>
                         <div id="cuisine-filter" class="chip-row" role="group" aria-label="Filtrer par cuisine">
-                            <button class="filter-chip active" type="button" data-filter-type="cuisine" data-filter-value="">Toutes les cuisines</button>
+                            <button class="filter-chip active" type="button" data-filter-type="cuisine" data-filter-value="">Toutes</button>
                         </div>
                     </div>
                 </div>
@@ -169,7 +167,7 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
 
     <!-- Local JS -->
-    <script src="script.js?v=20260607-fr" defer></script>
+    <script src="script.js?v=20260607-dining-map" defer></script>
 </body>
 
 </html>
