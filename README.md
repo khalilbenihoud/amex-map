@@ -1,4 +1,4 @@
-# Guide des Restaurants
+# Dining Map
 
 Ce projet a été restructuré pour être plus simple et optimisé pour la mise en ligne.
 

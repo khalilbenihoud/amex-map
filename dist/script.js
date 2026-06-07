@@ -45,7 +45,6 @@ const searchInput = document.getElementById('restaurant-search');
 const clearButton = document.getElementById('clear-search');
 const cuisineFilter = document.getElementById('cuisine-filter');
 const starsFilter = document.getElementById('stars-filter');
-const resultCount = document.getElementById('result-count');
 const clearAllButton = document.getElementById('clear-all-filters');
 const featureGroup = L.featureGroup();
 const activeFilters = {
@@ -120,11 +119,7 @@ function hasActiveFilters() {
     return Boolean(searchInput.value.trim() || activeFilters.cuisine || activeFilters.stars);
 }
 
-function updateResultMeta(count) {
-    if (resultCount) {
-        resultCount.textContent = `${count} ${count === 1 ? 'restaurant' : 'restaurants'}`;
-    }
-
+function updateFilterMeta() {
     if (clearAllButton) {
         clearAllButton.classList.toggle('visible', hasActiveFilters());
     }
@@ -377,7 +372,7 @@ function filterList(term) {
         fitMapToMarkerGroup(group);
     }
 
-    updateResultMeta(visibleRestaurants.length);
+    updateFilterMeta();
 }
 
 // Debounce function for performance
@@ -443,6 +438,6 @@ function initializeApp() {
     renderList(restaurants);
     initMarkers();
     initEventListeners();
-    updateResultMeta(restaurants.length);
+    updateFilterMeta();
     generateLocalBusinessSchema();
 }
