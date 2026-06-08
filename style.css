@@ -103,17 +103,6 @@ select {
     padding: 0.95rem 1rem 0.25rem;
 }
 
-.brand {
-    display: inline-flex;
-    margin-bottom: .35rem;
-    cursor: pointer;
-    color: var(--primary);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
 .title {
     color: var(--ink);
     font-family: var(--font-display);
@@ -124,38 +113,11 @@ select {
 }
 
 .subtitle {
-    font-size: 0.68rem;
-    color: var(--muted);
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.header-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.75rem;
     margin-top: 0.55rem;
-}
-
-.btn-text {
-    background: transparent;
-    border: 1px solid transparent;
-    color: var(--ink-soft);
-    font-size: .78rem;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 5px 0;
-    transition: color .2s, border-color .2s;
-}
-
-.btn-text:hover {
-    color: var(--primary-dark);
-    border-bottom-color: var(--primary);
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 500;
+    line-height: 1.25;
 }
 
 #search-container {
@@ -186,8 +148,12 @@ select {
     color: var(--muted);
     cursor: pointer;
     display: none;
+    align-items: center;
+    justify-content: center;
     padding: 4px;
+    border: 0;
     border-radius: 50%;
+    background: transparent;
     transition: all .2s;
     z-index: 10;
     width: 1.45rem;
@@ -197,6 +163,11 @@ select {
 .clear-search:hover {
     background: var(--line);
     color: var(--ink);
+}
+
+.clear-search:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
 }
 
 #restaurant-search {
@@ -352,7 +323,8 @@ select {
 
 .restaurant-list {
     flex: 1;
-    overflow-y: auto;
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
     padding: 0.85rem 0.85rem calc(1rem + env(safe-area-inset-bottom));
     background:
         linear-gradient(180deg, rgb(255 255 255 / 0.98), rgb(248 250 252 / 0.98)),
@@ -384,6 +356,9 @@ select {
 }
 
 .restaurant-card {
+    display: block;
+    inline-size: 100%;
+    max-inline-size: 100%;
     background: var(--paper);
     border: 1px solid var(--line);
     border-radius: 8px;
@@ -404,8 +379,7 @@ select {
     opacity: 0.32;
 }
 
-.restaurant-card.starred::before,
-.restaurant-card:has(.stars-badge)::before {
+.restaurant-card.starred::before {
     background: var(--gold);
     opacity: 1;
 }
@@ -431,6 +405,7 @@ select {
 }
 
 .card-title-block {
+    flex: 1 1 auto;
     min-width: 0;
 }
 
@@ -452,7 +427,9 @@ select {
     flex-wrap: wrap;
     justify-content: flex-end;
     gap: 0.35rem;
-    flex-shrink: 0;
+    flex: 0 1 auto;
+    max-width: 46%;
+    min-width: 0;
 }
 
 .stars-badge,
@@ -465,6 +442,7 @@ select {
     font-size: .72rem;
     font-weight: 700;
     white-space: nowrap;
+    max-width: 100%;
 }
 
 .stars-badge {
@@ -483,6 +461,11 @@ select {
     background: var(--cream-soft);
     color: var(--ink-soft);
     border: 1px solid var(--line);
+}
+
+.rating-badge.unrated {
+    color: var(--muted);
+    font-weight: 600;
 }
 
 .rating-badge .icon {
@@ -668,10 +651,6 @@ select {
     .restaurant-card {
         padding: 1.15rem;
         margin-bottom: 0.95rem;
-    }
-
-    .card-header {
-        grid-template-columns: minmax(0, 1fr);
     }
 
     .restaurant-card h3 {

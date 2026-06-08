@@ -41,7 +41,8 @@
         "lat": 45.4116,
         "lng": 6.6347,
         "type": "Française",
-        "stars": "3 Stars"
+        "stars": "3 Stars",
+        "rating": 4.7
     },
     {
         "name": "Bagatelle Chez Stefano Forever",
@@ -94,7 +95,8 @@
         "lat": 48.8528,
         "lng": 2.3304,
         "type": "Japonaise",
-        "stars": null
+        "stars": null,
+        "rating": 4.2
     },
     {
         "name": "Le Bar Long",
@@ -102,7 +104,8 @@
         "lat": 48.8756,
         "lng": 2.3015,
         "type": "Française",
-        "stars": null
+        "stars": null,
+        "rating": 4.3
     },
     {
         "name": "Bar Vendôme au Ritz Paris",
@@ -128,7 +131,8 @@
         "lat": 43.8409,
         "lng": 6.218,
         "type": "Française",
-        "stars": "1 Star"
+        "stars": "1 Star",
+        "rating": 4.6
     },
     {
         "name": "La Bauhinia",
@@ -136,7 +140,8 @@
         "lat": 48.8637,
         "lng": 2.2933,
         "type": "Asiatique",
-        "stars": null
+        "stars": null,
+        "rating": 4.4
     },
     {
         "name": "Baumanière 1850",
@@ -287,7 +292,8 @@
         "lat": 48.8661,
         "lng": 2.3164,
         "type": "Japonaise",
-        "stars": "2 Stars"
+        "stars": "2 Stars",
+        "rating": 4.6
     },
     {
         "name": "Abysse Monaco",
@@ -349,7 +355,8 @@
         "lat": 48.869,
         "lng": 2.3225,
         "type": "Méditerranéenne",
-        "stars": null
+        "stars": null,
+        "rating": 4
     },
     {
         "name": "Chantoiseau",
@@ -447,7 +454,8 @@
         "lat": 48.8423,
         "lng": 2.3275,
         "type": "Française",
-        "stars": null
+        "stars": null,
+        "rating": 4.4
     },
     {
         "name": "La Cour Jardin",
@@ -455,7 +463,8 @@
         "lat": 48.8654,
         "lng": 2.3023,
         "type": "Française",
-        "stars": null
+        "stars": null,
+        "rating": 4.3
     },
     {
         "name": "L'Ecrin",
@@ -463,7 +472,8 @@
         "lat": 48.8667,
         "lng": 2.3225,
         "type": "Française",
-        "stars": "1 Star"
+        "stars": "1 Star",
+        "rating": 4.8
     },
     {
         "name": "La Cucucina La Folie Douce",
@@ -471,7 +481,8 @@
         "lat": 45.448,
         "lng": 6.98,
         "type": "Italienne",
-        "stars": null
+        "stars": null,
+        "rating": 4.1
     },
     {
         "name": "Da Laura",
@@ -487,7 +498,7 @@
         "address": "228 rue de Rivoli, 75001 Paris",
         "type": "Française",
         "stars": null,
-        "rating": null,
+        "rating": 4.2,
         "lat": 48.8651,
         "lng": 2.3281
     },
@@ -532,7 +543,7 @@
         "address": "4 rue d'Anjou, 75008 Paris",
         "type": "Française",
         "stars": null,
-        "rating": null,
+        "rating": 4.8,
         "lat": 48.8695,
         "lng": 2.3206
     },
@@ -684,7 +695,7 @@
         "address": "12 rue de l'Indépendance Américaine, 78000 Versailles",
         "type": "Française",
         "stars": "1 Star",
-        "rating": null,
+        "rating": 4.1,
         "lat": 48.8014,
         "lng": 2.12
     },
@@ -693,7 +704,7 @@
         "address": "7 rue d'Aguesseau, 75008 Paris",
         "type": "Française",
         "stars": "2 Stars",
-        "rating": null,
+        "rating": 4.4,
         "lat": 48.8701,
         "lng": 2.3193
     },
@@ -719,7 +730,7 @@
         "address": "11 quai de Conti, 75006 Paris",
         "type": "Française",
         "stars": "2 Stars",
-        "rating": null,
+        "rating": 4.7,
         "lat": 48.8564,
         "lng": 2.3385
     },
@@ -738,7 +749,8 @@
         "lat": 48.8624,
         "lng": 2.3401,
         "type": "Française",
-        "stars": null
+        "stars": null,
+        "rating": 4.3
     },
     {
         "name": "Hanabi",
@@ -764,7 +776,8 @@
         "lat": 43.3931,
         "lng": 6.0401,
         "type": "Méditerranéenne",
-        "stars": "1 Star"
+        "stars": "1 Star",
+        "rating": 4.3
     },
     {
         "name": "Il Carpaccio",
@@ -781,7 +794,8 @@
         "lat": 48.869,
         "lng": 2.3006,
         "type": "Italienne",
-        "stars": null
+        "stars": null,
+        "rating": 4.5
     },
     {
         "name": "Lili",
@@ -807,7 +821,8 @@
         "lat": 43.2185,
         "lng": 6.661,
         "type": "Française",
-        "stars": null
+        "stars": null,
+        "rating": 4.3
     },
     {
         "name": "Jean Imbert au Plaza Athénée",
@@ -815,7 +830,8 @@
         "lat": 48.8654,
         "lng": 2.3023,
         "type": "Française",
-        "stars": "1 Star"
+        "stars": "1 Star",
+        "rating": 3.9
     },
     {
         "name": "Jòia",
@@ -823,7 +839,8 @@
         "lat": 48.8697,
         "lng": 2.3435,
         "type": "Française",
-        "stars": null
+        "stars": null,
+        "rating": 3.8
     },
     {
         "name": "Kaito",
@@ -839,7 +856,8 @@
         "lat": 48.8742,
         "lng": 2.3115,
         "type": "Méditerranéenne",
-        "stars": null
+        "stars": null,
+        "rating": 3.6
     },
     {
         "name": "Akira Back",
@@ -864,7 +882,8 @@
         "lat": 45.3941,
         "lng": 6.5658,
         "type": "Française",
-        "stars": "1 Star"
+        "stars": "1 Star",
+        "rating": 4.3
     },
     {
         "name": "AM par Alexandre Mazzia",
@@ -881,7 +900,8 @@
         "lat": 48.8675,
         "lng": 2.3015,
         "type": "Russe",
-        "stars": null
+        "stars": null,
+        "rating": 3.8
     },
     {
         "name": "Mamo Michelangelo",
@@ -897,7 +917,7 @@
         "address": "4 rue d'Assas, 75006 Paris",
         "type": "Française",
         "stars": "2 Stars",
-        "rating": null,
+        "rating": 4.3,
         "lat": 48.85,
         "lng": 2.3278
     },
@@ -906,7 +926,7 @@
         "address": "37 avenue Hoche, 75008 Paris",
         "type": "Japonaise",
         "stars": null,
-        "rating": null,
+        "rating": 4.3,
         "lat": 48.8758,
         "lng": 2.3003
     },
@@ -925,14 +945,15 @@
         "lat": 43.2987,
         "lng": 5.3787,
         "type": "Française",
-        "stars": null
+        "stars": null,
+        "rating": 4.5
     },
     {
         "name": "Mido",
         "address": "64 avenue Marceau, 75008 Paris",
         "type": "Asiatique",
         "stars": null,
-        "rating": null,
+        "rating": 4.3,
         "lat": 48.8706,
         "lng": 2.298
     },
@@ -967,7 +988,7 @@
         "address": "2 rue de Berne, 75008 Paris",
         "type": "Française",
         "stars": null,
-        "rating": null,
+        "rating": 4.6,
         "lat": 48.8802,
         "lng": 2.324
     },
@@ -1002,7 +1023,7 @@
         "address": "22 promenade Claude Lévi-Strauss, 75013 Paris",
         "type": "Française",
         "stars": null,
-        "rating": null,
+        "rating": 4.6,
         "lat": 48.8317,
         "lng": 2.3744
     },
@@ -1012,7 +1033,8 @@
         "lat": 48.8712,
         "lng": 2.2965,
         "type": "Française",
-        "stars": "2 Stars"
+        "stars": "2 Stars",
+        "rating": 4.6
     },
     {
         "name": "Ore",
