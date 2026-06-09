@@ -27,8 +27,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
     <!-- Preload critical resources -->
-    <link rel="preload" href="style.css?v=20260608-ship" as="style">
-    <link rel="preload" href="script.js?v=20260608-ship" as="script">
+    <link rel="preload" href="style.css?v=20260609-mobile-tabs" as="style">
+    <link rel="preload" href="script.js?v=20260609-mobile-tabs" as="script">
     <link rel="preload" href="data/restaurants.json" as="fetch" crossorigin>
 
     <!-- DNS prefetch for external resources -->
@@ -97,11 +97,11 @@
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
     <!-- Local CSS -->
-    <link rel="stylesheet" href="style.css?v=20260608-ship">
+    <link rel="stylesheet" href="style.css?v=20260609-mobile-tabs">
 </head>
 
 <body>
-    <div class="container">
+    <div class="container list-view" id="app-container">
         <aside class="sidebar">
             <div class="floating-search-header">
                 <header class="header">
@@ -124,11 +124,10 @@
                         </button>
                     </div>
                 </div>
+
             </div>
 
             <section class="results-sheet">
-                <div class="sheet-handle" aria-hidden="true"></div>
-
                 <div id="filters-container" class="filters-container">
                     <div class="filter-section">
                         <div class="filter-heading">
@@ -162,6 +161,11 @@
         <main class="map-container">
             <div id="map"></div>
         </main>
+
+        <nav class="view-toggle" aria-label="Changer de vue">
+            <button class="view-toggle-button" type="button" data-view="map" aria-pressed="false">Carte</button>
+            <button class="view-toggle-button active" type="button" data-view="list" aria-pressed="true">Liste</button>
+        </nav>
     </div>
 
     <!-- Leaflet JS -->
@@ -169,7 +173,7 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
 
     <!-- Local JS -->
-    <script src="script.js?v=20260608-ship" defer></script>
+    <script src="script.js?v=20260609-mobile-tabs" defer></script>
 </body>
 
 </html>

@@ -37,12 +37,14 @@ L.control.zoom({
 
 // Global variables
 const restaurantById = {};
+const appContainer = document.getElementById('app-container');
 const listContainer = document.getElementById('restaurant-list');
 const searchInput = document.getElementById('restaurant-search');
 const clearButton = document.getElementById('clear-search');
 const cuisineFilter = document.getElementById('cuisine-filter');
 const starsFilter = document.getElementById('stars-filter');
 const clearAllButton = document.getElementById('clear-all-filters');
+const viewToggleButtons = document.querySelectorAll('.view-toggle-button');
 const featureGroup = L.featureGroup();
 const markerLayer = L.layerGroup().addTo(map);
 const activeFilters = {
@@ -60,8 +62,8 @@ function fitMapToMarkerGroup(group) {
 
     const options = isMobileLayout()
         ? {
-            paddingTopLeft: [20, 170],
-            paddingBottomRight: [20, Math.round(window.innerHeight * 0.46)]
+            paddingTopLeft: [20, 190],
+            paddingBottomRight: [20, 28]
         }
         : { padding: [36, 36] };
 
@@ -157,6 +159,28 @@ function setFilter(type, value) {
     activeFilters[type] = value;
     updateChipState(type, value);
     filterList(searchInput.value);
+}
+
+function setMobileView(view) {
+    if (!appContainer || !['map', 'list'].includes(view)) return;
+
+    appContainer.classList.toggle('map-view', view === 'map');
+    appContainer.classList.toggle('list-view', view === 'list');
+
+    viewToggleButtons.forEach(button => {
+        const isActive = button.dataset.view === view;
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-pressed', String(isActive));
+    });
+
+    if (view === 'map') {
+        requestAnimationFrame(() => {
+            map.invalidateSize();
+            if (visibleMarkers.length) {
+                fitMapToMarkerGroup(L.featureGroup(visibleMarkers));
+            }
+        });
+    }
 }
 
 function showLoadError() {
@@ -424,6 +448,9 @@ function initEventListeners() {
         if (!restaurant || !restaurant.marker) return;
 
         map.flyTo([restaurant.lat, restaurant.lng], 16, { duration: 1.2 });
+        if (isMobileLayout()) {
+            setMobileView('map');
+        }
         restaurant.marker.openPopup();
 
         document.querySelectorAll('.restaurant-card').forEach(c => c.classList.remove('active'));
@@ -446,6 +473,12 @@ function initEventListeners() {
         });
     });
 
+    viewToggleButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            setMobileView(button.dataset.view);
+        });
+    });
+
     clearAllButton.addEventListener('click', () => {
         searchInput.value = '';
         clearButton.style.display = 'none';
@@ -462,6 +495,12 @@ function initEventListeners() {
     });
 
     window.addEventListener('resize', debounce(() => {
+        if (!isMobileLayout()) {
+            appContainer.classList.remove('map-view', 'list-view');
+        } else if (!appContainer.classList.contains('map-view') && !appContainer.classList.contains('list-view')) {
+            setMobileView('list');
+        }
+
         map.invalidateSize();
         if (visibleMarkers.length) {
             fitMapToMarkerGroup(L.featureGroup(visibleMarkers));
@@ -476,6 +515,10 @@ function initializeApp() {
     initMarkers();
     visibleMarkers = restaurants.map(restaurant => restaurant.marker).filter(Boolean);
     initEventListeners();
+    if (isMobileLayout()) {
+        const initialView = new URLSearchParams(window.location.search).get('view') === 'map' ? 'map' : 'list';
+        setMobileView(initialView);
+    }
     updateFilterMeta();
     generateLocalBusinessSchema();
 }
