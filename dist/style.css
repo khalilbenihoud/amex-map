@@ -124,6 +124,10 @@ select {
     padding: 0.55rem 0.75rem 0.75rem;
 }
 
+.view-toggle {
+    display: none;
+}
+
 .search-wrapper {
     position: relative;
 }
@@ -206,15 +210,6 @@ select {
     border-radius: 18px 18px 0 0;
     box-shadow: var(--shadow-xl);
     overflow: hidden;
-}
-
-.sheet-handle {
-    width: 2.75rem;
-    height: 4px;
-    border-radius: 999px;
-    background: var(--line-strong);
-    margin: 0.65rem auto 0.4rem;
-    flex: 0 0 auto;
 }
 
 .filters-container {
@@ -357,8 +352,8 @@ select {
 
 .restaurant-card {
     display: block;
-    inline-size: 100%;
-    max-inline-size: 100%;
+    width: auto;
+    max-width: none;
     background: var(--paper);
     border: 1px solid var(--line);
     border-radius: 8px;
@@ -442,7 +437,6 @@ select {
     font-size: .72rem;
     font-weight: 700;
     white-space: nowrap;
-    max-width: 100%;
 }
 
 .stars-badge {
@@ -576,6 +570,198 @@ select {
     }
 }
 
+@media (max-width: 768px) {
+    .floating-search-header {
+        top: max(0.85rem, env(safe-area-inset-top));
+        left: 0.9rem;
+        right: 0.9rem;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .header {
+        padding: 0.9rem 0.95rem 0.18rem;
+    }
+
+    .title {
+        font-size: clamp(2.05rem, 10vw, 2.35rem);
+        line-height: 0.95;
+    }
+
+    .subtitle {
+        margin-top: 0.42rem;
+        font-size: 0.72rem;
+        line-height: 1.2;
+    }
+
+    #search-container {
+        padding: 0.58rem 0.75rem 0.8rem;
+    }
+
+    #restaurant-search {
+        min-height: 2.85rem;
+        padding: 0.72rem 2.25rem 0.72rem 2.35rem;
+        font-size: 0.92rem;
+    }
+
+    .search-icon {
+        left: 0.78rem;
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .clear-search {
+        right: 0.65rem;
+    }
+
+    .view-toggle {
+        position: fixed;
+        left: 0.75rem;
+        right: 0.75rem;
+        bottom: max(0.75rem, env(safe-area-inset-bottom));
+        z-index: 45;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.25rem;
+        padding: 0.22rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgb(255 255 255 / 0.94);
+        box-shadow: var(--shadow-md);
+        backdrop-filter: blur(18px);
+        overflow: hidden;
+    }
+
+    .view-toggle-button {
+        min-height: 2rem;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--ink-soft);
+        cursor: pointer;
+        font-size: 0.78rem;
+        font-weight: 700;
+        transition: background .2s, color .2s, box-shadow .2s;
+    }
+
+    .view-toggle-button.active {
+        background: var(--primary);
+        color: #fff;
+        box-shadow: 0 4px 10px rgb(37 99 235 / 0.16);
+    }
+
+    .view-toggle-button:focus-visible {
+        outline: 2px solid var(--primary);
+        outline-offset: 2px;
+    }
+
+    .results-sheet {
+        top: 10.2rem;
+        height: auto;
+        min-height: 0;
+        border-top: 1px solid var(--line);
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .container.list-view .map-container {
+        display: none;
+    }
+
+    .container.map-view .results-sheet {
+        display: none;
+    }
+
+    .leaflet-bottom {
+        bottom: 3.9rem;
+    }
+
+    .filters-container {
+        padding: 0.9rem 0.9rem 0.85rem;
+        gap: 0.8rem;
+    }
+
+    .filter-label {
+        font-size: 0.61rem;
+        margin-bottom: 0.42rem;
+    }
+
+    .chip-row {
+        gap: 0.42rem;
+        padding-bottom: 0.12rem;
+    }
+
+    .filter-chip {
+        min-height: 1.92rem;
+        padding: 0.34rem 0.62rem;
+        font-size: 0.72rem;
+    }
+
+    .restaurant-list {
+        overflow-x: hidden;
+        overflow-y: auto;
+        scrollbar-gutter: auto;
+        padding: 1rem 0.9rem calc(4.8rem + env(safe-area-inset-bottom));
+    }
+
+    .restaurant-list::-webkit-scrollbar {
+        width: 0;
+    }
+
+    .restaurant-card {
+        padding: 0.95rem 1rem;
+        margin-bottom: 0.82rem;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.58rem;
+        margin-bottom: 0.55rem;
+    }
+
+    .restaurant-card h3 {
+        font-size: 1.46rem;
+        line-height: 1;
+        margin-bottom: 0.22rem;
+    }
+
+    .cuisine-row {
+        font-size: 0.8rem;
+    }
+
+    .location-row {
+        gap: 0.45rem;
+        font-size: 0.8rem;
+        line-height: 1.35;
+    }
+
+    .location-row .icon {
+        width: 0.9rem;
+        height: 0.9rem;
+    }
+
+    .card-badges {
+        gap: 0.25rem;
+        flex: 0 0 auto;
+        max-width: none;
+        justify-content: flex-start;
+    }
+
+    .stars-badge,
+    .rating-badge {
+        gap: 3px;
+        padding: 0.22rem 0.42rem;
+        font-size: 0.68rem;
+    }
+
+    .stars-badge .icon,
+    .rating-badge .icon {
+        width: 0.74rem;
+        height: 0.74rem;
+    }
+}
+
 @media (min-width: 769px) {
     .container {
         display: flex;
@@ -634,10 +820,6 @@ select {
         border: 0;
         border-radius: 0;
         box-shadow: none;
-    }
-
-    .sheet-handle {
-        display: none;
     }
 
     .filters-container {
